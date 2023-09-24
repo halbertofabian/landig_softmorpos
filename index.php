@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -8,15 +8,17 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0-beta3/css/all.min.css" rel="stylesheet" integrity="sha384-EpkJPF1M9W5qAz3KprGh3J5eU6AKlTdhdwVGBC3tPQZvjoA9cqmzRnFRl1ArSXkU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
     <title>POS - Punto de venta #1 en México</title>
     <style>
         .c-pos {
-            margin-top: 200px;
+            margin-top: 170px;
         }
 
         .text-pos-3 {
-            font-size: 20px;
+            font-size: 14px;
             color: #64748b;
             font-weight: 400;
         }
@@ -28,11 +30,10 @@
         }
 
         .text-pos-2 {
-            font-size: 40px;
+            font-size: 28px;
             color: #0F172B;
             font-weight: 400;
         }
-
 
         .custom-list {
             list-style: none;
@@ -45,7 +46,6 @@
             margin-right: 10px;
             /* Agrega un espacio entre el ícono y el texto */
         }
-
 
         /* Estilos generales para la lista */
         .list-register {
@@ -83,17 +83,72 @@
                 /* Elimina el margen derecho para que los elementos estén alineados en el centro */
             }
         }
+
+
+
+        /* Estilos para la animación del botón */
+        .btn-primary {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Estilos para el fondo oscuro del footer */
+        .dark-bg {
+            background-color: #0F172B;
+        }
+
+        /* Estilos para el texto del footer */
+        .footer-text {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Estilos para el botón de WhatsApp */
+        .whatsapp-btn {
+            background-color: #25d366;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+        }
     </style>
 </head>
 
-<body style="background-color:#F1F5F9">
+<body style="background-color:#F1F5F9; position: relative;">
+
+    <div class="curved-bg"></div> <!-- Fondo con curvas -->
 
     <nav class="navbar fixed-top navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand text-center" href="#">Llamanos al (734) 100 6945 -Lunes a Viernes 8:00 a 19:00 Sabado 8:00 a 12:00</a>
-        </div>
-    </nav>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 fixed-top ">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center" href="#">
+            <span class="d-none d-md-inline"><center>Llámanos al (734) 100 6945 - Lunes a Viernes 8:00 a 19:00 Sabado 8:00 a 12:00</center></span>
+            <span class="d-inline d-md-none text-center" style="font-size: 12px;">
+                <center>Tel: (734) 100 6945  Lun-Vie: 8:00 - 19:00 Sáb: 8:00 - 12:00</center>
+            </span>
+        </a>
+    </div>
+</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://softmorpos.com/img/logo.png" alt="" width="150" class="d-inline-block align-text-top">
@@ -128,10 +183,8 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button> -->
                     <button class="btn btn-outline-dark m-1">Ingresa</button>
-                    <button class="btn btn-primary m-1">Empieza gratis</button>
+                    <button class="btn btn-primary m-1 btn-primary btn-lg animate__animated animate__pulse animate__infinite" type="button">Empieza gratis</button>
                 </form>
             </div>
         </div>
@@ -140,14 +193,14 @@
     <div class="container c-pos">
         <div class="row">
             <div class="col-md-6 text-pos-c">
-                <h3 class="text-pos-3">Solución de Punto de Venta Especializada para Taller de Reparaciones</h3>
+                <h3 class="text-pos-3 text-center">Solución de Punto de Venta Especializada para Taller de Reparaciones</h3>
                 <h2 class="text-pos-2">
                     ¿Necesitas vender y generar notas en cuestión de segundos? <br> ¡Con <strong class="text-primary">Softmor POS </strong> , es posible!
                 </h2>
                 <h6 class="text-pos-3">
                     Optimiza tu proceso de ventas y brinda a tus clientes una experiencia de compra única y rápida. Di adiós a las largas colas en tus momentos más concurridos.
                 </h6>
-                <button class="btn btn-lg btn-primary mt-5" type="button">Empieza gratis</button>
+                <button class="btn btn-lg btn-primary mt-4" type="button">Empieza gratis</button>
 
                 <h5>Software de 5 entrellas
                     <img src="./icons8-cinco-de-cinco-estrellas-100.png" width="120px" alt="">
@@ -370,34 +423,30 @@
 
         </div>
     </div>
-    <!-- <footer class="">
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 dark-bg">
         <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
-        </div>
-    </footer> -->
-    <footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="d-flex align-items-center justify-content-center text-center">
-                    <div>
-                        <img src="https://softmorpos.com/img/logo.png" width="100" alt="Logo de Softmor POS">
-                        <p style="margin: 1rem 0; font-size: 14px; color: #777;">Softmor POS: un sistema web que resuelve problemas comunes de los técnicos en reparación de equipos de cómputo y más.</p>
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-center text-center">
+                        <div>
+                            <img src="https://softmorpos.com/img/logo.png" width="100" alt="Logo de Softmor POS">
+                            <p class="footer-text">Softmor POS: un sistema web que resuelve problemas comunes de los técnicos en reparación de equipos de cómputo y más.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <span style="font-size: 10px; color: #777;">&copy; 2024 Softmor Studios. Todos los derechos reservados.</span>
-            </div>
-            <div class="col-md-6 text-end">
-                <a href="https://facebook.com/softmor" target="_blank" class="me-3"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/softmormx/" target="_blank" class="me-3"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/softmormx" target="_blank"><i class="fab fa-twitter"></i></a>
+                <div class="col-md-6 text-center">
+                    <span class="footer-text text-white ">&copy; 2024 Softmor Studios. Todos los derechos reservados.</span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="https://facebook.com/softmor" target="_blank" class="me-3 text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/softmormx/" target="_blank" class="me-3 text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/softmormx" target="_blank" class="text-white"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-
+    </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -406,9 +455,4 @@
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-</body>
-
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@

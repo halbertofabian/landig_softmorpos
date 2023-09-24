@@ -200,7 +200,7 @@
                 <h6 class="text-pos-3">
                     Optimiza tu proceso de ventas y brinda a tus clientes una experiencia de compra única y rápida. Di adiós a las largas colas en tus momentos más concurridos.
                 </h6>
-                <button class="btn btn-lg btn-primary mt-1" type="button">Empieza gratis</button>
+                <button class="btn btn-lg btn-primary mt-4" type="button">Empieza gratis</button>
 
                 <h5>Software de 5 entrellas
                     <img src="./icons8-cinco-de-cinco-estrellas-100.png" width="120px" alt="">

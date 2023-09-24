@@ -226,6 +226,11 @@
                             <p class="text-p">Los comienzos son mucho más efectivos cuando se dan en equipo. 😎 <br> Déjanos tu número, nosotros te ayudamos al 100% en tu inicio con <br> Softmor POS </p>
 
                             <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                      <input type="text" name="" id="" class="form-control" placeholder="Nombre">
+                                    </div>
+                                </div>
                                 <div class="col-4">
                                     <select id="paises" class="select2">
                                         <option value="">Seleciona tu país</option>

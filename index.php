@@ -1,3 +1,10 @@
+<?php
+if (isset($_GET['ref'])) {
+    $registro = "registro.php?ref=" . $_GET['ref'];
+}else{
+    $registro = "registro.php";
+}
+?>
 <!doctype html>
 <html lang="es">
 
@@ -131,7 +138,7 @@
                     <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button> -->
                     <button class="btn btn-outline-dark m-1">Ingresa</button>
-                    <button class="btn btn-primary m-1">Empieza gratis</button>
+                    <a class="btn btn-primary m-1" href="<?= $registro ?>">Empieza gratis</a>
                 </form>
             </div>
         </div>
@@ -147,7 +154,7 @@
                 <h6 class="text-pos-3">
                     Optimiza tu proceso de ventas y brinda a tus clientes una experiencia de compra única y rápida. Di adiós a las largas colas en tus momentos más concurridos.
                 </h6>
-                <button class="btn btn-lg btn-primary mt-5" type="button">Empieza gratis</button>
+                <a class="btn btn-lg btn-primary mt-5" type="button" href="<?= $registro ?>">Empieza gratis</a>
 
                 <h5>Software de 5 entrellas
                     <img src="./icons8-cinco-de-cinco-estrellas-100.png" width="120px" alt="">
@@ -205,7 +212,7 @@
                     <li><i class="fas fa-check"></i> Gestión eficiente desde cualquier lugar.</li>
                     <li><i class="fas fa-check"></i> Simplifica la administración de talleres.</li>
                 </ul>
-                <button class="btn btn-lg btn-primary " type="button">Empieza gratis</button>
+                <a class="btn btn-lg btn-primary " type="button" href="<?= $registro ?>">Empieza gratis</a>
             </div>
         </div>
         <div class="row">
@@ -218,7 +225,7 @@
                     <li><i class="fas fa-check"></i> Controla tu inventario de forma eficiente y precisa..</li>
                     <li><i class="fas fa-check"></i> Potencia tus ventas con un sistema de punto de venta confiable.</li>
                 </ul>
-                <button class="btn btn-lg btn-primary mt-4" type="button">Empieza gratis</button>
+                <a class="btn btn-lg btn-primary mt-4" type="button" href="<?= $registro ?>">Empieza gratis</a>
             </div>
 
             <div class="col-md-6">
@@ -233,7 +240,7 @@
                         <div class="container-fluid py-5 text-center">
                             <h1 class="display-5 fw-bold text-white text-pos-2">Empieza hoy a darle miles de posibilidades a tu negocio con Softmor POS</h1>
                             <p class="text-white">Prueba todas nuestras funcionalidades durante 15 días de a grapa. Más de 500 negocios nos eligen..</p>
-                            <button class="btn btn-lg btn-outline-light mt-5" type="button">Empieza gratis</button>
+                            <a class="btn btn-lg btn-outline-light mt-5" type="button" href="<?= $registro ?>">Empieza gratis</a>
                             <ul class="list-register inter-font font-weight-600 text-left mt-3">
                                 <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin contratos de permanencia</li>
                                 <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin descargas</li>
@@ -376,27 +383,27 @@
         </div>
     </footer> -->
     <footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="d-flex align-items-center justify-content-center text-center">
-                    <div>
-                        <img src="https://softmorpos.com/img/logo.png" width="100" alt="Logo de Softmor POS">
-                        <p style="margin: 1rem 0; font-size: 14px; color: #777;">Softmor POS: un sistema web que resuelve problemas comunes de los técnicos en reparación de equipos de cómputo y más.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-center text-center">
+                        <div>
+                            <img src="https://softmorpos.com/img/logo.png" width="100" alt="Logo de Softmor POS">
+                            <p style="margin: 1rem 0; font-size: 14px; color: #777;">Softmor POS: un sistema web que resuelve problemas comunes de los técnicos en reparación de equipos de cómputo y más.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <span style="font-size: 10px; color: #777;">&copy; 2024 Softmor Studios. Todos los derechos reservados.</span>
-            </div>
-            <div class="col-md-6 text-end">
-                <a href="https://facebook.com/softmor" target="_blank" class="me-3"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/softmormx/" target="_blank" class="me-3"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/softmormx" target="_blank"><i class="fab fa-twitter"></i></a>
+                <div class="col-md-6">
+                    <span style="font-size: 10px; color: #777;">&copy; 2024 Softmor Studios. Todos los derechos reservados.</span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="https://facebook.com/softmor" target="_blank" class="me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/softmormx/" target="_blank" class="me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/softmormx" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 
     <!-- Optional JavaScript; choose one of the two! -->

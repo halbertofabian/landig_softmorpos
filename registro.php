@@ -209,30 +209,46 @@
                         <div class="alert alert-danger d-none" role="alert">
                             <strong>¡ERROR!</strong> <span id="msg_error"></span>
                         </div>
-                        <br><span class="mt-5 text-normal" style="font-size: 12px;">Prueba gratis y sin tarjeta de crédito</span>
-                        <div class="div-term">
-                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion"><strong class="">Iniciar sesión</strong></a>
-                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="TC-SOFTMOR-SEP-23.pdf" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="wizard-step">
-                    <h1 class="text-h1">¡Hola 😀, te damos la bienvenida! </h1>
-                    <h2 class="text-h2">Elige la opción que más te identifique y ayudanos a mejorar tu experiencia</h2>
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <div class="btn-group-vertical d-flex" role="group" aria-label="Tipo de Usuario">
-                                <input type="radio" class="btn-check" name="tipoUsuario" id="propietario" value="A" autocomplete="off">
-                                <label class="btn btn-outline-primary flex-grow-1" for="propietario">Soy dueño del negocio</label>
+                        <div class="wizard-step">
+                            <h1 class="text-h1">¡Tus 15 días de prueba gratis comizan ahora!</h1>
+                            <p class="text-p">Los comienzos son mucho más efectivos cuando se dan en equipo. 😎 <br> Déjanos tu número, nosotros te ayudamos al 100% en tu inicio con <br> Softmor POS </p>
 
-                                <input type="radio" class="btn-check" name="tipoUsuario" id="tecnico" value="B" autocomplete="off">
-                                <label class="btn btn-outline-primary flex-grow-1" for="tecnico">Estoy en el área técnica</label>
-
-                                <input type="radio" class="btn-check" name="tipoUsuario" id="administrativo" value="C" autocomplete="off">
-                                <label class="btn btn-outline-primary flex-grow-1" for="administrativo">Estoy en el área administrativa</label>
-
-                                <input type="radio" class="btn-check" name="tipoUsuario" id="recepcion" value="D" autocomplete="off">
-                                <label class="btn btn-outline-primary flex-grow-1" for="recepcion">Estoy en recepción y punto de venta</label>
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                      <input type="text" name="" id="" class="form-control" placeholder="Nombre">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <select id="paises" class="select2">
+                                        <option value="">Seleciona tu país</option>
+                                        <option value="México+52">🇲🇽 México (+52)</option>
+                                        <option value="Argentina+54">🇦🇷 Argentina (+54)</option>
+                                        <option value="Bolivia+591">🇧🇴 Bolivia (+591)</option>
+                                        <option value="Brasil+55">🇧🇷 Brasil (+55)</option>
+                                        <option value="Chile+56">🇨🇱 Chile (+56)</option>
+                                        <option value="Colombia+57">🇨🇴 Colombia (+57)</option>
+                                        <option value="Costa Rica+506">🇨🇷 Costa Rica (+506)</option>
+                                        <option value="Cuba+53">🇨🇺 Cuba (+53)</option>
+                                        <option value="Ecuador+593">🇪🇨 Ecuador (+593)</option>
+                                        <option value="El Salvador+503">🇸🇻 El Salvador (+503)</option>
+                                        <option value="Guatemala+502">🇬🇹 Guatemala (+502)</option>
+                                        <option value="Honduras+504">🇭🇳 Honduras (+504)</option>
+                                        <option value="México+52">🇲🇽 México (+52)</option>
+                                        <option value="Nicaragua+505">🇳🇮 Nicaragua (+505)</option>
+                                        <option value="Panamá+507">🇵🇦 Panamá (+507)</option>
+                                        <option value="Paraguay+595">🇵🇾 Paraguay (+595)</option>
+                                        <option value="Perú+51">🇵🇪 Perú (+51)</option>
+                                        <option value="República Dominicana+1">🇩🇴 República Dominicana (+1)</option>
+                                        <option value="Uruguay+598">🇺🇾 Uruguay (+598)</option>
+                                        <option value="Venezuela+58">🇻🇪 Venezuela (+58)</option>
+                                        <option value="España+34">🇪🇸 España (+34)</option>
+                                        <option value="Estados Unidos+1">🇺🇸 Estados Unidos (+1)</option>
+                                    </select>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" placeholder="Teléfono" required>
+                                </div>
                             </div>
                         </div>
                     </div>

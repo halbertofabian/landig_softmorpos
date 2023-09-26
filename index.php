@@ -1,4 +1,6 @@
 <?php 
+include_once 'config.php';
+
 if(isset($_GET['ref'])){
     $registro = "registro.php?ref=" . $_GET['ref'];
 }else{
@@ -191,7 +193,7 @@ if(isset($_GET['ref'])){
                 </ul>
                 <form class="d-flex">
                     <button class="btn btn-outline-dark m-1">Ingresa</button>
-                    <button class="btn btn-primary m-1 btn-primary btn-lg animate__animated animate__pulse animate__infinite" type="button">Empieza gratis</button>
+                    <a class="btn btn-primary m-1 btn-primary btn-lg animate__animated animate__pulse animate__infinite" type="button" href="<?= $registro ?>">Empieza gratis</a>
                 </form>
             </div>
         </div>
@@ -207,7 +209,7 @@ if(isset($_GET['ref'])){
                 <h6 class="text-pos-3">
                     Optimiza tu proceso de ventas y brinda a tus clientes una experiencia de compra única y rápida. Di adiós a las largas colas en tus momentos más concurridos.
                 </h6>
-                <button class="btn btn-lg btn-primary mt-4" type="button">Empieza gratis</button>
+                <a class="btn btn-lg btn-primary mt-4" type="button" href="<?= $registro ?>">Empieza gratis</a>
 
                 <h5>Software de 5 entrellas
                     <img src="./icons8-cinco-de-cinco-estrellas-100.png" width="120px" alt="">

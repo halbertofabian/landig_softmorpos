@@ -1,3 +1,6 @@
+<?php
+include_once 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -209,64 +212,53 @@
                         <div class="alert alert-danger d-none" role="alert">
                             <strong>¡ERROR!</strong> <span id="msg_error"></span>
                         </div>
-                        <div class="wizard-step">
-                            <h1 class="text-h1">¡Tus 15 días de prueba gratis comizan ahora!</h1>
-                            <p class="text-p">Los comienzos son mucho más efectivos cuando se dan en equipo. 😎 <br> Déjanos tu número, nosotros te ayudamos al 100% en tu inicio con <br> Softmor POS </p>
+                        <br><span class="mt-5 text-normal" style="font-size: 12px;">Prueba gratis y sin tarjeta de crédito</span>
+                        <div class="div-term">
+                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion"><strong class="">Iniciar sesión</strong></a>
+                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="TC-SOFTMOR-SEP-23.pdf" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-step">
+                    <h1 class="text-h1">¡Hola 😀, te damos la bienvenida! </h1>
+                    <h2 class="text-h2">Elige la opción que más te identifique y ayudanos a mejorar tu experiencia</h2>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <div class="btn-group-vertical d-flex" role="group" aria-label="Tipo de Usuario">
+                                <input type="radio" class="btn-check" name="tipoUsuario" id="propietario" value="A" autocomplete="off">
+                                <label class="btn btn-outline-primary flex-grow-1" for="propietario">Soy dueño del negocio</label>
 
-                            <div class="row">
-                                <div class="col-12 mb-4">
-                                    <div class="form-group">
-                                      <input type="text" name="" id="" class="form-control" placeholder="Nombre">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <select id="paises" class="select2">
-                                        <option value="">Seleciona tu país</option>
-                                        <option value="México+52">🇲🇽 México (+52)</option>
-                                        <option value="Argentina+54">🇦🇷 Argentina (+54)</option>
-                                        <option value="Bolivia+591">🇧🇴 Bolivia (+591)</option>
-                                        <option value="Brasil+55">🇧🇷 Brasil (+55)</option>
-                                        <option value="Chile+56">🇨🇱 Chile (+56)</option>
-                                        <option value="Colombia+57">🇨🇴 Colombia (+57)</option>
-                                        <option value="Costa Rica+506">🇨🇷 Costa Rica (+506)</option>
-                                        <option value="Cuba+53">🇨🇺 Cuba (+53)</option>
-                                        <option value="Ecuador+593">🇪🇨 Ecuador (+593)</option>
-                                        <option value="El Salvador+503">🇸🇻 El Salvador (+503)</option>
-                                        <option value="Guatemala+502">🇬🇹 Guatemala (+502)</option>
-                                        <option value="Honduras+504">🇭🇳 Honduras (+504)</option>
-                                        <option value="México+52">🇲🇽 México (+52)</option>
-                                        <option value="Nicaragua+505">🇳🇮 Nicaragua (+505)</option>
-                                        <option value="Panamá+507">🇵🇦 Panamá (+507)</option>
-                                        <option value="Paraguay+595">🇵🇾 Paraguay (+595)</option>
-                                        <option value="Perú+51">🇵🇪 Perú (+51)</option>
-                                        <option value="República Dominicana+1">🇩🇴 República Dominicana (+1)</option>
-                                        <option value="Uruguay+598">🇺🇾 Uruguay (+598)</option>
-                                        <option value="Venezuela+58">🇻🇪 Venezuela (+58)</option>
-                                        <option value="España+34">🇪🇸 España (+34)</option>
-                                        <option value="Estados Unidos+1">🇺🇸 Estados Unidos (+1)</option>
-                                    </select>
-                                </div>
-                                <div class="col-8">
-                                    <input type="text" class="form-control" placeholder="Teléfono" required>
-                                </div>
+                                <input type="radio" class="btn-check" name="tipoUsuario" id="tecnico" value="B" autocomplete="off">
+                                <label class="btn btn-outline-primary flex-grow-1" for="tecnico">Estoy en el área técnica</label>
+
+                                <input type="radio" class="btn-check" name="tipoUsuario" id="administrativo" value="C" autocomplete="off">
+                                <label class="btn btn-outline-primary flex-grow-1" for="administrativo">Estoy en el área administrativa</label>
+
+                                <input type="radio" class="btn-check" name="tipoUsuario" id="recepcion" value="D" autocomplete="off">
+                                <label class="btn btn-outline-primary flex-grow-1" for="recepcion">Estoy en recepción y punto de venta</label>
                             </div>
                         </div>
                     </div>
                     <!-- <button class="btn btn-primary prev-step">Anterior</button> -->
-                    <button class="btn btn-primary next-step float-end" id="btnNextWelcome">Siguiente</button>
+                    <button type="button" class="btn btn-primary next-step float-end">Siguiente</button>
                 </div>
                 <div class="wizard-step">
                     <h1 class="text-h1">Información de tu empresa </h1>
                     <h2 class="text-h2">Agrega el nombre de tu empresa, este dato aparecerá en tus tickets</h2>
                     <input type="text" class="form-control mb-5" id="ppt_nombre_empresa" placeholder="Nombre de la empresa" required>
                     <button class="btn btn-primary prev-step">Anterior</button>
-                    <button class="btn btn-primary next-step float-end" id="btnNextEmpresa">Siguiente</button>
+                    <button type="button" class="btn btn-primary next-step float-end">Siguiente</button>
                 </div>
                 <div class="wizard-step">
                     <h1 class="text-h1">¡Tus 15 días de prueba gratis comizan ahora!</h1>
                     <p class="text-p">Los comienzos son mucho más efectivos cuando se dan en equipo. 😎 <br> Déjanos tu número, nosotros te ayudamos al 100% en tu inicio con <br> Softmor POS </p>
 
                     <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="form-group">
+                                <input type="text" name="" id="ppt_nombre" class="form-control" placeholder="Nombre">
+                            </div>
+                        </div>
                         <div class="col-4">
                             <select id="paises" class="select2">
                                 <option value="">Seleciona tu país</option>
@@ -299,7 +291,7 @@
                         </div>
                     </div>
                     <!-- <button class="btn btn-primary prev-step">Anterior</button> -->
-                    <button class="btn btn-primary next-step mt-4" style="width: 100%;">Empezar mi prueba</button>
+                    <button class="btn btn-primary next-step mt-4 btn-load" style="width: 100%;">Empezar mi prueba</button>
                     <!-- Aquí puedes agregar un botón para finalizar el proceso si lo deseas -->
                 </div>
             </div>
@@ -331,7 +323,7 @@
             // Navegación a la siguiente sección
             var validar;
             $(".next-step").click(function() {
-                if (currentStep == 0) {
+                if (currentStep === 0) {
                     var ppt_correo = $("#ppt_correo").val();
                     var ppt_clave = $("#ppt_clave").val();
                     // Expresión regular para validar un correo electrónico
@@ -374,13 +366,15 @@
                             avanzarPaso();
                         } else {
                             validar = 2;
+                            return false;
                         }
                     }).catch(function() {
                         validar = 2; // Manejo de error en caso de que la promesa sea rechazada
+                        return false;
                     });
 
                 }
-                if (currentStep == 1) {
+                if (currentStep === 1) {
                     if ($("input[name='tipoUsuario']:checked").length === 0) {
                         validar = 2;
                         toastr.error('Por favor, selecciona una opción de tipo de usuario.', '¡ERROR!');
@@ -395,13 +389,15 @@
                             avanzarPaso();
                         } else {
                             validar = 2;
+                            return false;
                         }
                     }).catch(function() {
                         validar = 2; // Manejo de error en caso de que la promesa sea rechazada
+                        return false;
                     });
 
                 }
-                if (currentStep == 2) {
+                if (currentStep === 2) {
                     var ppt_nombre_empresa = $("#ppt_nombre_empresa").val();
                     if (ppt_nombre_empresa == "") {
                         validar = 2;
@@ -415,36 +411,77 @@
                         if (resultado) {
                             validar = 1;
                             setTimeout(function() {
-                                $("#ppt_nombre_empresa").focus();
+                                $("#ppt_nombre").focus();
                             }, 100);
                             avanzarPaso();
                         } else {
                             validar = 2;
+                            return false;
                         }
                     }).catch(function() {
                         validar = 2; // Manejo de error en caso de que la promesa sea rechazada
+                        return false;
+                    });
+                }
+                if (currentStep === 3) {
+                    var ppt_nombre = $("#ppt_nombre").val();
+                    var paises = $("#paises").val();
+                    var telefono = $("#telefono").val();
+                    if (ppt_nombre == "") {
+                        validar = 2;
+                        toastr.error('Por favor, escriba el nombre.', '¡ERROR!');
+                        setTimeout(function() {
+                            $("#ppt_nombre").focus();
+                        }, 100);
+                        return false;
+                    }
+                    if (paises == "") {
+                        validar = 2;
+                        toastr.error('Por favor, selecciona un pais.', '¡ERROR!');
+                        return false;
+                    }
+                    if (telefono == "") {
+                        validar = 2;
+                        toastr.error('Por favor, escriba su telefono.', '¡ERROR!');
+                        setTimeout(function() {
+                            $("#telefono").focus();
+                        }, 100);
+                        return false;
+                    }
+                    guardarDatos().then(function(resultado) {
+                        if (resultado.status) {
+                            window.location.href = resultado.pagina;
+                        } else {
+                            validar = 2;
+                            return false;
+                        }
+                    }).catch(function() {
+                        validar = 2; // Manejo de error en caso de que la promesa sea rechazada
+                        return false;
                     });
                 }
 
-                steps.eq(currentStep).removeClass("active");
-                if (validar === 1) {
-                    currentStep++;
-                }
-                if (currentStep >= steps.length) {
-                    currentStep = steps.length - 1;
-                }
-                steps.eq(currentStep).addClass("active");
-                updateButtons();
+                // steps.eq(currentStep).removeClass("active");
+                // if (validar === 1) {
+                //     currentStep++;
+                // }
+                // if (currentStep >= steps.length) {
+                //     currentStep = steps.length - 1;
+                // }
+                // steps.eq(currentStep).addClass("active");
+                // updateButtons();
             });
 
             function avanzarPaso() {
-                steps.eq(currentStep).removeClass("active");
-                currentStep++;
-                if (currentStep >= steps.length) {
-                    currentStep = steps.length - 1;
+                if (validar === 1) {
+                    steps.eq(currentStep).removeClass("active");
+                    currentStep++;
+                    if (currentStep >= steps.length) {
+                        currentStep = steps.length - 1;
+                    }
+                    steps.eq(currentStep).addClass("active");
+                    updateButtons();
                 }
-                steps.eq(currentStep).addClass("active");
-                updateButtons();
             }
 
             // Navegación a la sección anterior
@@ -508,7 +545,7 @@
                     var cps_codigo = inputCodigoPromocional.value.trim();
                     $.ajax({
                         type: 'GET',
-                        url: 'http://localhost/softmor-pos/api/public/consultar-cupon/' + cps_codigo,
+                        url: '<?= URL_SOFTMOR_POS ?>' + 'consultar-cupon/' + cps_codigo,
                         // data: datos,
                         dataType: 'json',
                         processData: false,
@@ -561,7 +598,7 @@
                 datos.append('btnGuardarProspecto', true);
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/softmor-pos/api/public/prospectos/guardar',
+                    url: '<?= URL_SOFTMOR_POS ?>' + 'prospectos/guardar',
                     data: datos,
                     dataType: 'json',
                     processData: false,
@@ -592,7 +629,7 @@
                 datos.append('ppt_id', ppt_id);
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/softmor-pos/api/public/prospectos/guardar/tipo',
+                    url: '<?= URL_SOFTMOR_POS ?>' + 'prospectos/guardar/tipo',
                     data: datos,
                     dataType: 'json',
                     processData: false,
@@ -612,6 +649,7 @@
                 });
             });
         }
+
         function guardarEmpresa() {
             return new Promise(function(resolve, reject) {
                 var ppt_nombre_empresa = $("#ppt_nombre_empresa").val();
@@ -621,7 +659,7 @@
                 datos.append('ppt_id', ppt_id);
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/softmor-pos/api/public/prospectos/guardar/empresa',
+                    url: '<?= URL_SOFTMOR_POS ?>' + 'prospectos/guardar/empresa',
                     data: datos,
                     dataType: 'json',
                     processData: false,
@@ -640,6 +678,60 @@
                     }
                 });
             });
+        }
+
+        function guardarDatos() {
+            return new Promise(function(resolve, reject) {
+                var ppt_nombre = $("#ppt_nombre").val();
+                var paises = $("#paises").val();
+                var telefono = $("#telefono").val();
+                var ppt_id = $("#ppt_id").val();
+                var datos = new FormData()
+                datos.append('ppt_nombre', ppt_nombre);
+                datos.append('paises', paises);
+                datos.append('ppt_telefono', telefono);
+                datos.append('ppt_id', ppt_id);
+                $.ajax({
+                    type: 'POST',
+                    url: '<?= URL_SOFTMOR_POS ?>' + 'prospectos/guardar/datos',
+                    data: datos,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        startLoadButton()
+                    },
+                    success: function(res) {
+                        stopLoadButton();
+                        if (res.status) {
+                            toastr.success(res.mensaje, '¡Muy bien!');
+                            resolve(res);
+                        } else {
+                            toastr.error(res.mensaje, '¡ERROR!');
+                            resolve(false);
+                        }
+                    },
+                    error: function() {
+                        reject(false); // Rechaza la promesa en caso de error
+                    }
+                });
+            });
+        }
+
+
+        function startLoadButton() {
+            $(".btn-load").attr("disabled", true);
+            $(".btn-load").html(` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Por favor espere...`)
+        }
+
+        function stopLoadButton(label) {
+            $(".btn-load").attr("disabled", false);
+            if (label == "") {
+                $(".btn-load").html("ACEPTAR");
+            } else {
+                $(".btn-load").html(label);
+            }
         }
     </script>
 
@@ -655,7 +747,7 @@ if (isset($_GET['ref'])) :
         $("#encabezado2").removeClass("d-none");
         $.ajax({
             type: 'GET',
-            url: 'http://localhost/softmor-pos/api/public/consultar-ref/' + '<?= $_GET['ref'] ?>',
+            url: '<?= URL_SOFTMOR_POS ?>' + 'consultar-ref/' + '<?= $_GET['ref'] ?>',
             // data: datos,
             dataType: 'json',
             processData: false,

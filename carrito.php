@@ -1,7 +1,21 @@
 <?php
 @session_start();
 include_once 'config.php';
+if (isset($_GET['ref'])) {
+    $_SESSION['ref'] = $_GET['ref'];
+}
 
+if (isset($_SESSION['ref'])) {
+    $registro = "registro.php?ref=" . $_SESSION['ref'];
+    $carrito = "carrito.php?ref=" . $_SESSION['ref'];
+    $respuesta = file_get_contents(URL_SOFTMOR_POS. 'consultar-ref/' . $_SESSION['ref']);
+    $datos = json_decode($respuesta, true);
+    $cps = $datos['cps'];
+    
+} else {
+    $registro = "registro.php";
+    $carrito = "carrito.php";
+}
 
 ?>
 <!DOCTYPE html>
@@ -232,11 +246,11 @@ $array_paquetes = array(
 
 $arra_cupon = array(
     // Cupon
-    'cupon' => '',
-    'd_m' =>0,
-    'd_a' => 30,
-    'dr_m' => 0,
-    'dr_a' =>10
+    'cupon' => isset($cps['cps_codigo']) ? $cps['cps_codigo'] : "",
+    'd_m' => isset($cps['cps_descuento_m']) ? $cps['cps_descuento_m'] : 0,
+    'd_a' => isset($cps['cps_descuento_a']) ? $cps['cps_descuento_a'] : 0,
+    'dr_m' => isset($cps['cps_descuento_mr']) ? $cps['cps_descuento_mr'] : 0,
+    'dr_a' => isset($cps['cps_descuento_ar']) ? $cps['cps_descuento_ar'] : 0
 );
 
 
@@ -296,8 +310,8 @@ $_plus_a = array(
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="https://softmorpos.com/img/logo.png" alt="" width="100" class="d-inline-block align-text-top">
+            <a class="navbar-brand" href="<?= HTTP_HOST ?>">
+                <img src="https://softmorpos.com/img/logo.png" alt="" width="150" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -305,7 +319,7 @@ $_plus_a = array(
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="<?= HTTP_HOST ?>">Inicio</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -322,7 +336,7 @@ $_plus_a = array(
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Planes</a>
+                        <a class="nav-link" href="<?= $carrito ?>">Planes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contacto</a>

@@ -215,7 +215,7 @@ include_once 'config.php';
                         <br><span class="mt-5 text-normal" style="font-size: 12px;">Prueba gratis y sin tarjeta de crédito</span>
                         <div class="div-term">
                             <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion"><strong class="">Iniciar sesión</strong></a>
-                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="TC-SOFTMOR-SEP-23.pdf" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
+                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="terminos.php" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
                         </div>
                     </div>
                 </div>

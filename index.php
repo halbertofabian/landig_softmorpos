@@ -1,11 +1,6 @@
-<?php 
+<?php
+@session_start();
 include_once 'config.php';
-
-if(isset($_GET['ref'])){
-    $registro = "registro.php?ref=" . $_GET['ref'];
-}else{
-    $registro = "registro.php";
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -145,18 +140,36 @@ if(isset($_GET['ref'])){
 
 <body style="background-color:#F1F5F9; position: relative;">
 
+    <?php
+
+    if (isset($_GET['ref'])) {
+        $_SESSION['ref'] = $_GET['ref'];
+    }
+
+    if (isset($_SESSION['ref'])) {
+        $registro = "registro.php?ref=" . $_SESSION['ref'];
+        $carrito = "carrito.php?ref=" . $_SESSION['ref'];
+    } else {
+        $registro = "registro.php";
+        $carrito = "carrito.php";
+    }
+
+    ?>
+
     <div class="curved-bg"></div> <!-- Fondo con curvas -->
 
     <nav class="navbar fixed-top navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand text-center" href="#">
-            <span class="d-none d-md-inline"><center>Llámanos al (734) 100 6945 - Lunes a Viernes 8:00 a 19:00 Sabado 8:00 a 12:00</center></span>
-            <span class="d-inline d-md-none text-center" style="font-size: 12px;">
-                <center>Tel: (734) 100 6945  Lun-Vie: 8:00 - 19:00 Sáb: 8:00 - 12:00</center>
-            </span>
-        </a>
-    </div>
-</nav>
+        <div class="container-fluid">
+            <a class="navbar-brand text-center" href="#">
+                <span class="d-none d-md-inline">
+                    <center>Llámanos al (734) 100 6945 - Lunes a Viernes 8:00 a 19:00 Sabado 8:00 a 12:00</center>
+                </span>
+                <span class="d-inline d-md-none text-center" style="font-size: 12px;">
+                    <center>Tel: (734) 100 6945 Lun-Vie: 8:00 - 19:00 Sáb: 8:00 - 12:00</center>
+                </span>
+            </a>
+        </div>
+    </nav>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -185,7 +198,7 @@ if(isset($_GET['ref'])){
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Planes</a>
+                        <a class="nav-link" href="<?= $carrito ?>">Precios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contacto</a>

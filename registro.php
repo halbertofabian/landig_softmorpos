@@ -259,7 +259,7 @@ include_once 'config.php';
                                 <input type="text" name="" id="ppt_nombre" class="form-control" placeholder="Nombre">
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 col-12">
                             <select id="paises" class="select2">
                                 <option value="">Seleciona tu país</option>
                                 <option value="México+52">🇲🇽 México (+52)</option>

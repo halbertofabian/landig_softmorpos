@@ -234,6 +234,9 @@ if (isset($_SESSION['ref'])) {
 
 <?php
 
+// API PARA CONSULTAR PAQUETES 
+
+
 $array_paquetes = array(
     // Precios mensuales
     'basic' => 250,

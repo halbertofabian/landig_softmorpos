@@ -8,10 +8,9 @@ if (isset($_GET['ref'])) {
 if (isset($_SESSION['ref'])) {
     $registro = "registro.php?ref=" . $_SESSION['ref'];
     $carrito = "carrito.php?ref=" . $_SESSION['ref'];
-    $respuesta = file_get_contents(URL_SOFTMOR_POS. 'consultar-ref/' . $_SESSION['ref']);
+    $respuesta = file_get_contents(URL_SOFTMOR_POS . 'consultar-ref/' . $_SESSION['ref']);
     $datos = json_decode($respuesta, true);
     $cps = $datos['cps'];
-    
 } else {
     $registro = "registro.php";
     $carrito = "carrito.php";
@@ -235,16 +234,34 @@ if (isset($_SESSION['ref'])) {
 <?php
 
 // API PARA CONSULTAR PAQUETES 
+$respuesta = file_get_contents(URL_SOFTMOR_POS . 'obtener-paquetes');
+$paquetes = json_decode($respuesta, true);
+$pqt_basic_mensual = array();
+$pqt_plus_mensual = array();
 
+$pqt_basic_anual = array();
+$pqt_plus_anual = array();
+foreach ($paquetes as $key => $pqt) {
+    if($pqt['pqt_nombre'] == "BASIC" && $pqt['pqt_caducidad'] == "1 month" && $pqt['pqt_precio'] == 250){
+        $pqt_basic_mensual[] = $pqt; 
+    }
+    if($pqt['pqt_nombre'] == "PLUS" && $pqt['pqt_caducidad'] == "1 month" && $pqt['pqt_precio'] == 350){
+        $pqt_plus_mensual[] = $pqt; 
+    }
+
+    if($pqt['pqt_nombre'] == "BASIC" && $pqt['pqt_caducidad'] == "1 year" && $pqt['pqt_precio'] == 250){
+        $pqt_basic_anual[] = $pqt; 
+    }
+    if($pqt['pqt_nombre'] == "PLUS" && $pqt['pqt_caducidad'] == "1 year" && $pqt['pqt_precio'] == 350){
+        $pqt_plus_anual[] = $pqt; 
+    }
+}
 
 $array_paquetes = array(
     // Precios mensuales
-    'basic' => 250,
-    'plus' => 350
+    'basic' => $pqt_basic_mensual[0]['pqt_precio'],
+    'plus' => $pqt_plus_mensual[0]['pqt_precio']
 );
-
-
-
 
 
 $arra_cupon = array(
@@ -369,8 +386,8 @@ $_plus_a = array(
                         <div class="discount-circle"><?= $arra_cupon['d_m'] ?>%<br>OFF</div>
                     <?php endif; ?>
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h5 class="text-pos-2"><strong class="text-primary">Basic</strong></h5>
-                        <p>Ideal para tus primeros inicios.</p>
+                        <h5 class="text-pos-2"><strong class="text-primary"><?= $pqt_basic_mensual[0]['pqt_nombre'] ?></strong></h5>
+                        <p><?= $pqt_basic_mensual[0]['pqt_extracto'] ?></p>
 
                         <div>
                             <?php if ($arra_cupon['d_m'] == 0) : ?>
@@ -384,18 +401,18 @@ $_plus_a = array(
 
                             <?php endif; ?>
                         </div>
-                        <ul>
+                        <?= $pqt_basic_mensual[0]['pqt_descripcion'] ?>
+                        <!-- <ul>
                             <li><i class="fas fa-check text-success"></i> Licencia para <strong>1</strong> sucursal</li>
                             <li><i class="fas fa-check text-success"></i> 5 Usuarios con acceso a la plataforma</li>
                             <li><i class="fas fa-check text-success"></i> Módulo <strong> Mi taller </strong></li>
                             <li><i class="fas fa-check text-success"></i> Mono caja (1 caja para realizar cobros)</li>
                             <li><i class="fas fa-check text-success"></i> Soporte y actualizaciones</li>
                             <li><i class="fas fa-check text-success"></i> Acceso a los talleres Softmor POS</li>
-                            <!-- <li><i class="fas fa-times  text-danger"></i>  <span style="color:#999">Capacitación privada</span> </li> -->
                             <li><i class="fas fa-times  text-danger"></i> <span style="color:#999">Módulo Inventario</span> </li>
                             <li><i class="fas fa-times  text-danger"></i> <span style="color:#999">Módulo Cotizaciones</span> </li>
                             <li><i class="fas fa-times  text-danger"></i> <span style="color:#999">Módulo POS (Venta de productos)</span> </li>
-                        </ul>
+                        </ul> -->
                         <div class="row">
                             <div class=" col-12">
                                 <button class="btn btn-outline-primary w-100">Comprar</button>
@@ -408,8 +425,8 @@ $_plus_a = array(
                 <div class="card card-recomendado">
                     <div class="recommended-header">Recomendado</div>
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h5 class="text-pos-2"><strong class="text-primary">Plus</strong></h5>
-                        <p>Ideal para dar el siguiente paso.</p>
+                        <h5 class="text-pos-2"><strong class="text-primary"><?= $pqt_plus_mensual[0]['pqt_nombre'] ?></strong></h5>
+                        <p><?= $pqt_plus_mensual[0]['pqt_extracto'] ?></p>
                         <?php if ($arra_cupon['d_m'] > 0) :  ?>
                             <div class="discount-circle"><?= $arra_cupon['d_m'] ?>%<br>OFF</div>
                         <?php endif; ?>
@@ -422,18 +439,18 @@ $_plus_a = array(
                                 <p class="text-pos-3 "> <strong> <s>ANTES</s> <s>$ <?= $_plus_m['precio_real'] ?> </s> <s>MXN</s> <s>/MES</s> <i>Ahorra $ <?= $_plus_m['ahorro'] ?> MXN</i> <br> renovación $ <?= $_plus_m['precio_descuento_r'] ?> MXN </p></strong>
                             <?php endif; ?>
                         </div>
-                        <ul>
+                        <?= $pqt_plus_mensual[0]['pqt_descripcion'] ?>
+                        <!-- <ul>
                             <li><i class="fas fa-check text-success"></i> Licencia para <strong>1</strong> sucursal</li>
                             <li><i class="fas fa-check text-success"></i> <strong>10</strong> Usuarios con acceso a la plataforma</li>
                             <li><i class="fas fa-check text-success"></i> Módulo <strong> Mi taller </strong></li>
                             <li><i class="fas fa-check text-success"></i> <strong>Multi caja </strong>(3 cajas para realizar cobros simultaneos)</li>
                             <li><i class="fas fa-check text-success"></i> Soporte y actualizaciones</li>
                             <li><i class="fas fa-check text-success"></i> Acceso a los talleres Softmor POS</li>
-                            <!-- <li><i class="fas fa-times  text-danger"></i>  <span style="color:#999">Capacitación privada</span> </li> -->
                             <li><i class="fas fa-check text-success"></i> Módulo Inventario </li>
                             <li><i class="fas fa-check text-success"></i> Módulo Cotizaciones </li>
                             <li><i class="fas fa-check text-success"></i> Módulo POS (Venta de productos) </li>
-                        </ul>
+                        </ul> -->
 
 
                         <div class="row">
@@ -452,8 +469,8 @@ $_plus_a = array(
                         <div class="discount-circle"><?= $arra_cupon['d_a'] ?>%<br>OFF</div>
                     <?php endif; ?>
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h5 class="text-pos-2"><strong class="text-primary">Basic</strong></h5>
-                        <p>Ideal para tus primeros inicios.</p>
+                        <h5 class="text-pos-2"><strong class="text-primary"><?= $pqt_basic_anual[0]['pqt_nombre'] ?></strong></h5>
+                        <p><?= $pqt_basic_anual[0]['pqt_extracto'] ?></p>
 
                         <div>
                             <?php if ($arra_cupon['d_a'] == 0) : ?>
@@ -464,7 +481,7 @@ $_plus_a = array(
                                 <p class="text-pos-3 "> <strong> <s>ANTES</s> <s>$ <?= $_basic_a['precio_real'] ?> </s> <s>MXN</s> <s>/MES</s> <i>Ahorra $ <?= $_basic_a['ahorro'] * 12 ?> MXN</i> <br> renovación $ <?= $_basic_a['precio_descuento_r'] ?> MXN </p></strong>
                             <?php endif; ?>
                         </div>
-                        <ul>
+                        <!-- <ul>
                             <li><i class="fas fa-check text-success"></i> Licencia para <strong>1</strong> sucursal</li>
                             <li><i class="fas fa-check text-success"></i> 10 Usuarios con acceso a la plataforma</li>
                             <li><i class="fas fa-check text-success"></i> Módulo <strong> Mi taller </strong></li>
@@ -475,7 +492,8 @@ $_plus_a = array(
                             <li><i class="fas fa-times  text-danger"></i> <span style="color:#999">Módulo Inventario</span> </li>
                             <li><i class="fas fa-times  text-danger"></i> <span style="color:#999">Módulo Cotizaciones</span> </li>
                             <li><i class="fas fa-times  text-danger"></i> <span style="color:#999">Módulo POS (Venta de productos)</span> </li>
-                        </ul>
+                        </ul> -->
+                        <?= $pqt_basic_anual[0]['pqt_descripcion'] ?>
                         <div class="row">
                             <div class="col-12">
                                 <button class="btn btn-outline-primary w-100">Comprar</button>
@@ -489,8 +507,8 @@ $_plus_a = array(
                 <div class="card card-recomendado">
                     <div class="recommended-header">Recomendado</div>
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h5 class="text-pos-2"><strong class="text-primary">Plus</strong></h5>
-                        <p>Ideal para dar el siguiente paso.</p>
+                        <h5 class="text-pos-2"><strong class="text-primary"><?= $pqt_plus_anual[0]['pqt_nombre'] ?></strong></h5>
+                        <p><?= $pqt_plus_anual[0]['pqt_extracto'] ?></p>
                         <?php if ($arra_cupon['d_a'] > 0) :  ?>
                             <div class="discount-circle"><?= $arra_cupon['d_a'] ?>%<br>OFF</div>
                         <?php endif; ?>
@@ -503,7 +521,7 @@ $_plus_a = array(
                                 <p class="text-pos-3 "> <strong> <s>ANTES</s> <s>$ <?= $_plus_a['precio_real'] ?> </s> <s>MXN</s> <s>/MES</s> <i>Ahorra $ <?= $_plus_a['ahorro'] * 12 ?> MXN</i> <br> renovación $ <?= $_plus_a['precio_descuento_r'] ?> MXN </p></strong>
                             <?php endif; ?>
                         </div>
-                        <ul>
+                        <!-- <ul>
                             <li><i class="fas fa-check text-success"></i> Licencia para <strong>1</strong> sucursal</li>
                             <li><i class="fas fa-check text-success"></i> Usuarios <strong>ilimitados</strong> con acceso a la plataforma</li>
                             <li><i class="fas fa-check text-success"></i> Módulo <strong> Mi taller </strong></li>
@@ -514,7 +532,8 @@ $_plus_a = array(
                             <li><i class="fas fa-check text-success"></i> Módulo Inventario </li>
                             <li><i class="fas fa-check text-success"></i> Módulo Cotizaciones </li>
                             <li><i class="fas fa-check text-success"></i> Módulo POS (Venta de productos) </li>
-                        </ul>
+                        </ul> -->
+                        <?= $pqt_plus_anual[0]['pqt_descripcion'] ?>
                         <div class="row">
                             <div class=" col-12">
                                 <button class="btn btn-outline-primary w-100">Comprar</button>

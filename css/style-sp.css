@@ -1,0 +1,195 @@
+.c-pos {
+    margin-top: 170px;
+}
+
+.text-pos-3 {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.text-pos-4 {
+    font-size: 20px;
+    color: #0F172B;
+    font-weight: 400;
+}
+
+.text-pos-2 {
+    font-size: 28px;
+    color: #0F172B;
+    font-weight: 400;
+}
+
+.text-pos-1 {
+    font-size: 40px;
+    color: #0F172B;
+    font-weight: 400;
+}
+
+.custom-list {
+    list-style: none;
+    /* Elimina los puntos de la lista */
+}
+
+.custom-list i {
+    color: #005FF9;
+    /* Cambia el color de los íconos */
+    margin-right: 10px;
+    /* Agrega un espacio entre el ícono y el texto */
+}
+
+/* Estilos generales para la lista */
+.list-register {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Centra el texto horizontalmente */
+}
+
+.list-register li {
+    gap: 5px;
+    font-size: 16px;
+    color: #fff;
+    margin-right: 6px;
+    display: flex;
+    /* Para que los elementos estén en una fila */
+    align-items: center;
+}
+
+.list-register img {
+    display: inline;
+}
+
+/* Estilos para dispositivos móviles (ancho de pantalla <= 768px) */
+@media screen and (max-width: 768px) {
+    .list-register {
+        flex-direction: column;
+        /* Cambia la dirección de la lista a columna */
+    }
+
+    .list-register li {
+        margin-right: 0;
+        /* Elimina el margen derecho para que los elementos estén alineados en el centro */
+    }
+}
+
+
+
+/* Estilos para la animación del botón */
+.btn-primary {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Estilos para el fondo oscuro del footer */
+.dark-bg {
+    background-color: #0F172B;
+}
+
+/* Estilos para el texto del footer */
+.footer-text {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Estilos para el botón de WhatsApp */
+.whatsapp-btn {
+    background-color: #25d366;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128c7e;
+}
+
+.form-check.form-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Estilos personalizados para la lista */
+ul {
+    list-style: none;
+    /* Quita los puntos por defecto */
+}
+
+li {
+    margin-left: 1em;
+    /* Agrega un margen a la izquierda para los iconos */
+    position: relative;
+    /* Permite posicionar el icono */
+}
+
+
+
+.recommended-header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background-color: #007BFF;
+    /* Fondo de color primario */
+    color: white;
+    /* Texto blanco */
+    padding: 5px 10px;
+    /* Espaciado interno para el encabezado */
+    transform: translateX(-50%);
+    /* Centra horizontalmente */
+    border-radius: 5px;
+    /* Bordes redondeados para el encabezado */
+}
+
+.card-recomendado {
+    border: 2px solid #007BFF;
+    /* Borde de color primario */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    padding: 20px;
+    /* Espaciado interno */
+    /* text-align: center; Alineación de texto al centro */
+    position: relative;
+    /* Para posicionar el encabezado */
+}
+
+.discount-circle {
+    position: absolute;
+    top: 10px;
+    /* Ajusta la posición vertical */
+    right: 10px;
+    /* Ajusta la posición horizontal */
+    width: 75px;
+    /* Ancho del círculo */
+    height: 75px;
+    /* Altura del círculo */
+    background-color: red;
+    /* Fondo rojo */
+    border-radius: 5%;
+    /*Círculo con bordes redondeados*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* Texto blanco */
+}

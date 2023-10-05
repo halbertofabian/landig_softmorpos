@@ -29,205 +29,10 @@ if (isset($_SESSION['ref'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0-beta3/css/all.min.css" rel="stylesheet" integrity="sha384-EpkJPF1M9W5qAz3KprGh3J5eU6AKlTdhdwVGBC3tPQZvjoA9cqmzRnFRl1ArSXkU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
     <title>POS - Punto de venta #1 en México</title>
-    <style>
-        .c-pos {
-            margin-top: 170px;
-        }
-
-        .text-pos-3 {
-            font-size: 14px;
-            color: #64748b;
-            font-weight: 400;
-        }
-
-        .text-pos-4 {
-            font-size: 20px;
-            color: #0F172B;
-            font-weight: 400;
-        }
-
-        .text-pos-2 {
-            font-size: 28px;
-            color: #0F172B;
-            font-weight: 400;
-        }
-
-        .text-pos-1 {
-            font-size: 40px;
-            color: #0F172B;
-            font-weight: 400;
-        }
-
-        .custom-list {
-            list-style: none;
-            /* Elimina los puntos de la lista */
-        }
-
-        .custom-list i {
-            color: #005FF9;
-            /* Cambia el color de los íconos */
-            margin-right: 10px;
-            /* Agrega un espacio entre el ícono y el texto */
-        }
-
-        /* Estilos generales para la lista */
-        .list-register {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            /* Centra el texto horizontalmente */
-        }
-
-        .list-register li {
-            gap: 5px;
-            font-size: 16px;
-            color: #fff;
-            margin-right: 6px;
-            display: flex;
-            /* Para que los elementos estén en una fila */
-            align-items: center;
-        }
-
-        .list-register img {
-            display: inline;
-        }
-
-        /* Estilos para dispositivos móviles (ancho de pantalla <= 768px) */
-        @media screen and (max-width: 768px) {
-            .list-register {
-                flex-direction: column;
-                /* Cambia la dirección de la lista a columna */
-            }
-
-            .list-register li {
-                margin-right: 0;
-                /* Elimina el margen derecho para que los elementos estén alineados en el centro */
-            }
-        }
-
-
-
-        /* Estilos para la animación del botón */
-        .btn-primary {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* Estilos para el fondo oscuro del footer */
-        .dark-bg {
-            background-color: #0F172B;
-        }
-
-        /* Estilos para el texto del footer */
-        .footer-text {
-            font-size: 14px;
-            color: #777;
-        }
-
-        /* Estilos para el botón de WhatsApp */
-        .whatsapp-btn {
-            background-color: #25d366;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #128c7e;
-        }
-
-        .form-check.form-switch {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        /* Estilos personalizados para la lista */
-        ul {
-            list-style: none;
-            /* Quita los puntos por defecto */
-        }
-
-        li {
-            margin-left: 1em;
-            /* Agrega un margen a la izquierda para los iconos */
-            position: relative;
-            /* Permite posicionar el icono */
-        }
-
-
-
-        .recommended-header {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            background-color: #007BFF;
-            /* Fondo de color primario */
-            color: white;
-            /* Texto blanco */
-            padding: 5px 10px;
-            /* Espaciado interno para el encabezado */
-            transform: translateX(-50%);
-            /* Centra horizontalmente */
-            border-radius: 5px;
-            /* Bordes redondeados para el encabezado */
-        }
-
-        .card-recomendado {
-            border: 2px solid #007BFF;
-            /* Borde de color primario */
-            border-radius: 10px;
-            /* Bordes redondeados */
-            padding: 20px;
-            /* Espaciado interno */
-            /* text-align: center; Alineación de texto al centro */
-            position: relative;
-            /* Para posicionar el encabezado */
-        }
-
-        .discount-circle {
-            position: absolute;
-            top: 10px;
-            /* Ajusta la posición vertical */
-            right: 10px;
-            /* Ajusta la posición horizontal */
-            width: 75px;
-            /* Ancho del círculo */
-            height: 75px;
-            /* Altura del círculo */
-            background-color: red;
-            /* Fondo rojo */
-            border-radius: 5%;
-            /*Círculo con bordes redondeados*/
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            /* Texto blanco */
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style-sp.css">
 </head>
 
 
@@ -242,18 +47,18 @@ $pqt_plus_mensual = array();
 $pqt_basic_anual = array();
 $pqt_plus_anual = array();
 foreach ($paquetes as $key => $pqt) {
-    if($pqt['pqt_nombre'] == "BASIC" && $pqt['pqt_caducidad'] == "1 month" && $pqt['pqt_precio'] == 250){
-        $pqt_basic_mensual[] = $pqt; 
+    if ($pqt['pqt_nombre'] == "BASIC" && $pqt['pqt_caducidad'] == "1 month" && $pqt['pqt_precio'] == 250) {
+        $pqt_basic_mensual[] = $pqt;
     }
-    if($pqt['pqt_nombre'] == "PLUS" && $pqt['pqt_caducidad'] == "1 month" && $pqt['pqt_precio'] == 350){
-        $pqt_plus_mensual[] = $pqt; 
+    if ($pqt['pqt_nombre'] == "PLUS" && $pqt['pqt_caducidad'] == "1 month" && $pqt['pqt_precio'] == 350) {
+        $pqt_plus_mensual[] = $pqt;
     }
 
-    if($pqt['pqt_nombre'] == "BASIC" && $pqt['pqt_caducidad'] == "1 year" && $pqt['pqt_precio'] == 250){
-        $pqt_basic_anual[] = $pqt; 
+    if ($pqt['pqt_nombre'] == "BASIC" && $pqt['pqt_caducidad'] == "1 year" && $pqt['pqt_precio'] == 250) {
+        $pqt_basic_anual[] = $pqt;
     }
-    if($pqt['pqt_nombre'] == "PLUS" && $pqt['pqt_caducidad'] == "1 year" && $pqt['pqt_precio'] == 350){
-        $pqt_plus_anual[] = $pqt; 
+    if ($pqt['pqt_nombre'] == "PLUS" && $pqt['pqt_caducidad'] == "1 year" && $pqt['pqt_precio'] == 350) {
+        $pqt_plus_anual[] = $pqt;
     }
 }
 
@@ -302,13 +107,6 @@ $_plus_a = array(
     'precio_descuento_r' => $array_paquetes['plus'] - ($array_paquetes['plus'] * $arra_cupon['dr_a'] / 100),
     'ahorro' => ($array_paquetes['plus']) - ($array_paquetes['plus'] - ($array_paquetes['plus'] * $arra_cupon['d_a'] / 100))
 );
-
-
-
-
-
-
-
 ?>
 
 
@@ -415,7 +213,7 @@ $_plus_a = array(
                         </ul> -->
                         <div class="row">
                             <div class=" col-12">
-                                <button class="btn btn-outline-primary w-100">Comprar</button>
+                                <button class="btn btn-outline-primary btnAddCarrito" pqt_id="<?= $pqt_basic_mensual[0]['pqt_id'] ?>" cto_token_pay="" btnAddCarrito" pqt_id="<?= $pqt_basic_mensual[0]['pqt_id'] ?>" cto_token_pay="">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -455,7 +253,7 @@ $_plus_a = array(
 
                         <div class="row">
                             <div class=" col-12">
-                                <button class="btn btn-outline-primary w-100">Comprar</button>
+                                <button class="btn btn-outline-primary btnAddCarrito" pqt_id="<?= $pqt_plus_mensual[0]['pqt_id'] ?>" cto_token_pay="">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -496,7 +294,7 @@ $_plus_a = array(
                         <?= $pqt_basic_anual[0]['pqt_descripcion'] ?>
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-outline-primary w-100">Comprar</button>
+                                <button class="btn btn-outline-primary btnAddCarrito" pqt_id="<?= $pqt_basic_anual[0]['pqt_id'] ?>" cto_token_pay="">Comprar</button>
                             </div>
                         </div>
 
@@ -536,7 +334,7 @@ $_plus_a = array(
                         <?= $pqt_plus_anual[0]['pqt_descripcion'] ?>
                         <div class="row">
                             <div class=" col-12">
-                                <button class="btn btn-outline-primary w-100">Comprar</button>
+                                <button class="btn btn-outline-primary btnAddCarrito" pqt_id="<?= $pqt_plus_anual[0]['pqt_id'] ?>" cto_token_pay="">Comprar</button>
                             </div>
                         </div>
 
@@ -545,10 +343,10 @@ $_plus_a = array(
             </div>
         </div>
         <div class="row mt-5 table-responsive">
-            <h1 class="text-pos-2  text-center">Más caracteristicas</h1>
+            <h1 class="text-pos-2  text-center">Más características</h1>
             <table class=" table" style="font-size:18px;color: #64748B;">
                 <thead class="text-center">
-                    <th>Caracteriticas</th>
+                    <th>Características</th>
                     <th>BASIC</th>
                     <th>PLUS</th>
                 </thead>
@@ -609,11 +407,11 @@ $_plus_a = array(
                         <td colspan="2"><strong>Disponible</strong> en todos los planes</td>
                     </tr>
                     <tr>
-                        <td>Personalización de tickets (58mm, 80mm, tamaño carta, media carta, etc.)</td>
+                        <td>Personalización de tickets (58mm, 80mm, tamaño carta, media carta, etc. )</td>
                         <td colspan="2"><strong>Disponible</strong> en todos los planes</td>
                     </tr>
                     <tr>
-                        <td>Personalización de empresa (Nombre, logotipo, dirección, telefonos, etc. )</td>
+                        <td>Personalización de empresa (Nombre, logotipo, dirección, teléfonos, etc. )</td>
                         <td colspan="2"><strong>Disponible</strong> en todos los planes</td>
                     </tr>
                     <tr>
@@ -621,30 +419,19 @@ $_plus_a = array(
                         <td colspan="2"><strong>Disponible</strong> en todos los planes</td>
                     </tr>
                     <tr>
-                        <td>Acceso a talleres y capacitaciones publicos </td>
+                        <td>Acceso a talleres y capacitaciones públicas </td>
                         <td colspan="2"><strong>Disponible</strong> en todos los planes</td>
+                    </tr>
+                    <tr>
+                        <td>Capacitación privada </td>
+                        <td colspan="2"><strong>Disponible</strong> en todos los planes anuales</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="d-flex align-items-center justify-content-center">
-                    <div class="p-5 mb-4 bg-dark rounded-3">
-                        <div class="container-fluid py-5 text-center">
-                            <h1 class="display-5 fw-bold text-white text-pos-2">Empieza hoy a darle miles de posibilidades a tu negocio con Softmor POS</h1>
-                            <p class="text-white">Prueba todas nuestras funcionalidades durante 15 días de a grapa. Más de 500 negocios nos eligen..</p>
-                            <a class="btn btn-lg btn-outline-light mt-5" type="button" href="<?= $registro ?>">Empieza gratis</a>
-                            <ul class="list-register inter-font font-weight-600 text-left mt-3">
-                                <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin contratos de permanencia</li>
-                                <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin descargas</li>
-                                <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin tarjetas de crédito</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
         <div class="row mt-5 mb-5">
             <div class="col-md-4">
                 <div class="card">
@@ -671,6 +458,145 @@ $_plus_a = array(
                         <h4 class=" mb-4 card-title">Actualizaciones</h4>
                         <p class=" mb-4 card-text">Disfruta de actualizaciones constantes sin costos adicionales y mantente siempre al día.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="p-5 mb-4 bg-dark rounded-3">
+                        <div class="container-fluid py-5 text-center">
+                            <h1 class="display-5 fw-bold text-white text-pos-2">Empieza hoy a darle miles de posibilidades a tu negocio con Softmor POS</h1>
+                            <p class="text-white">Prueba todas nuestras funcionalidades durante 15 días de a grapa. Más de 500 negocios nos eligen..</p>
+                            <a class="btn btn-lg btn-outline-light mt-5" type="button" href="<?= $registro ?>">Empieza gratis</a>
+                            <ul class="list-register inter-font font-weight-600 text-left mt-3">
+                                <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin contratos de permanencia</li>
+                                <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin descargas</li>
+                                <li><img loading="lazy" src="./accountant-check-icon.svg"> Sin tarjetas de crédito</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 mb-5">
+            <div class="col-12 mb-5">
+                <!-- <h4 class="text-pos-2 text-center">  frecuentes</h4> -->
+                <h2 class="text-pos-2 text-center">
+                    Explora las <br> <strong class="text-primary"> preguntas </strong> frecuentes.
+                </h2>
+
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center text-center">
+                <div>
+                    <h3 class="text-pos-3">¿Tienes dudas sobre cómo esta plataforma puede beneficiarte?</h3>
+                    <p>¡Descubre por qué necesitas adquirir nuestro software!</p>
+                    <a href="https://wa.me/527341006945?text=Hola,%20me%20interesa%20en%20Softmor%20POS.%20¿Puedes%20proporcionarme%20más%20información?" target="_blank" class="btn btn-outline-primary mb-3">Recibir más información</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                ¿Cómo instalo y configuro el software POS en mi negocio?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Nuestro software es basado en la nube, lo que significa que no necesitas realizar una instalación complicada.
+                                <ol>
+                                    <li>Accede a la URL del sistema en <a href="https://softmorpos.com">https://softmorpos.com</a>.</li>
+                                    <li>Inicia sesión con tus credenciales de usuario y contraseña.</li>
+                                    <li>Configura tu sucursal proporcionando su nombre y detalles relevantes.</li>
+                                    <li>Personaliza el sistema agregando el logotipo de tu negocio.</li>
+                                    <li>Selecciona el formato de impresión predeterminado.</li>
+                                    <li>Nuestro equipo de soporte estará disponible para ayudarte en todo momento.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                ¿Cuáles son los requisitos técnicos para utilizar este software?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Nuestro software es flexible y se adapta a una variedad de configuraciones de hardware para simplificar la gestión de tu negocio.
+                                <ul>
+                                    <li>No necesitas mucho en hardware, solo una computadora o cualquier otro dispositivo (preferiblemente con una pantalla grande).</li>
+                                    <li>Utiliza cualquier navegador web, aunque se recomienda Google Chrome.</li>
+                                    <li>Cualquier lector de código de barras es compatible con nuestro sistema.</li>
+                                    <li>Puedes usar cualquier impresora, ya sea térmica o láser, pero se recomienda una térmica de 80 mm.</li>
+                                    <li>Si deseas un cajón de dinero, es compatible y fácil de configurar para abrir automáticamente.</li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                ¿Qué funciones y características ofrece este POS?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Este sistema POS ofrece una amplia gama de funciones y características para satisfacer tus necesidades comerciales. Estas incluyen, pero no se limitan a:
+                                <ul>
+                                    <li>Cotizaciones: Capacidad para generar cotizaciones para clientes.</li>
+                                    <li>Encargos: Gestión de encargos de productos para clientes.</li>
+                                    <li>Productos: Facilita la administración de productos y servicios en tu inventario.</li>
+                                    <li>Gestión de inventario: Control total sobre el inventario, incluyendo seguimiento de existencias y alertas de bajo stock.</li>
+                                    <li>Reportes de ventas: Informes detallados sobre las ventas realizadas y el desempeño de tu negocio.</li>
+                                    <li>Utilidades: Funciones útiles para simplificar la operación diaria, como cálculo de impuestos y descuentos.</li>
+                                    <li>Compras: Registro de compras de productos o materiales para tu negocio.</li>
+                                    <li>Traspasos entre sucursales: Facilita el movimiento de productos entre diferentes ubicaciones de tu negocio.</li>
+                                </ul>
+                                Estas son solo algunas de las funciones que ofrece el sistema POS. Además, se están realizando mejoras continuas y se implementan nuevas características a medida que evoluciona el sistema, asegurando que siempre tengas acceso a las herramientas necesarias para gestionar eficazmente tu negocio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                ¿Es posible personalizar los recibos con mi logotipo y detalles comerciales?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Sí, es posible personalizar los recibos con tu logotipo y detalles comerciales. Esto te permite darle un toque personalizado a las transacciones y asegurarte de que reflejen la identidad de tu negocio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                ¿El software POS es compatible con la impresión de etiquetas de código de barras?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Sí, nuestro software POS es compatible con la impresión de etiquetas de código de barras. Puedes configurar el tamaño de las etiquetas según tus necesidades, incluyendo los datos que contendrán. Además, puedes utilizar esta función para generar etiquetas para los productos que vendes y también para los dispositivos que ingresan a tus servicios.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                                ¿Ofrecen soporte técnico o asistencia en caso de problemas?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Sí, en todo momento que lo necesites, recibe asesoría gratuita de un equipo especializado a través de teléfono, correo electrónico o chat.
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -708,6 +634,9 @@ $_plus_a = array(
     <!-- Agrega jQuery para el funcionamiento del wizard -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Optional JavaScript; choose one of the two! -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <script>
         const checkbox = document.getElementById('preciosAnuales');
 
@@ -724,5 +653,53 @@ $_plus_a = array(
                 $(".paquete-anual").addClass('d-none')
             }
         });
+
+
+        $(".btnAddCarrito").on("click", function() {
+            var pqt_id = $(this).attr("pqt_id")
+            var cto_token_pay = $(this).attr("cto_token_pay")
+
+            var datos = new FormData();
+            datos.append("pqt_id", pqt_id);
+            datos.append("cto_token_pay", cto_token_pay);
+            datos.append("btnAddCarrito", true);
+            $.ajax({
+
+                url: '<?= URL_SOFTMOR_POS ?>' + 'prospectos/carrito/add',
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                beforeSend: function() {
+                    $('.btnAddCarrito').prop('disabled', true); // Deshabilitar el botón
+                    $('.btnAddCarrito').text('Cargando...'); // 
+                    //startLoadButton()
+                },
+                success: function(respuesta) {
+                    // stopLoadButton()
+                    if (respuesta.status) {
+                        toastr.success(respuesta.mensaje, '¡Muy bien!');
+                        setTimeout(function() {
+                            window.location.href = respuesta.pagina;
+                        }, 2000);
+                    } else {
+                        // toastr.info(respuesta.mensaje, 'Algo salio mal')
+
+                        toastr.error(respuesta.mensaje, '¡Error!');
+                        setTimeout(function() {
+                            window.location.href = respuesta.pagina;
+                        }, 700);
+
+                        $('.btnAddCarrito').prop('disabled', false); // Habilitar el botón nuevamente
+                        $('.btnAddCarrito').text('Agregar al carrito');
+                    }
+
+
+                }
+                /************ */
+            })
+        })
     </script>
 </body>

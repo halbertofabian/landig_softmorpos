@@ -1,3 +1,17 @@
+<?php
+include_once 'config.php';
+if (isset($_GET['tokenpay'])) {
+    $respuesta = file_get_contents(URL_SOFTMOR_POS . 'consultar-carrito/' . $_GET['tokenpay']);
+    $cto = json_decode($respuesta, true);
+    if ($cto['cto_correo_suscriptor'] !== "") {
+        $mostrar_correo = "";
+        $mostrar_auth = 'd-none';
+    } else {
+        $mostrar_correo = 'd-none';
+        $mostrar_auth = "";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -62,11 +76,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title text-center">Identificate</h4>
-                                <div class="row pos-auttetication-on">
+                                <div class="row pos-auttetication-on <?= $mostrar_correo ?>">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for=""> Correo electronico suscriptor</label>
-                                            <input type="text" name="" id="" class="form-control" placeholder="" readonly>
+                                            <input type="text" name="" id="" class="form-control" placeholder="" value="<?= $cto['cto_correo_suscriptor'] ?>" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -109,27 +123,26 @@
                                     </div>
                                 </div>
 
-                                <div class="row pos-auttetication-off d-none">
+                                <div class="row pos-auttetication-off <?= $mostrar_auth ?>">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for=""> Correo electronico</label>
-                                            <input type="text" name="" id="" class="form-control" placeholder="">
+                                            <input type="text" name="" id="usr_id" class="form-control" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for=""> Contraseña </label>
-                                            <input type="text" name="" id="" class="form-control" placeholder="">
+                                            <input type="password" name="" id="usr_clave" class="form-control" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="col-12 text-end">
-                                        <button class="btn btn-primary mt-3">Iniciar sesión</button>
+                                        <button type="button" class="btn btn-primary mt-3" id="btnIniciarSesion">Iniciar sesión</button>
                                     </div>
                                     <div class="col-12 text-center mt-4 align-items-center">
-                                        <p>¿Aún no tienes cuenta? <a href="#">Registrate gratis</a> </p>
+                                        <p>¿Aún no tienes cuenta? <a href="javascript:void(0);" id="btnRegistrarGratis">Registrate gratis</a> </p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -150,7 +163,7 @@
                                                 </div>
                                             </div>
 
-                                        
+
                                             <div class="card-body d-none cardStrype ">
                                                 <!-- Display a payment form -->
 
@@ -217,13 +230,13 @@
 
                             <div class="row pos-carrito text-center">
                                 <div class="col-12">
-                                    <span class="">Plan <strong>Plus</strong> </span>
+                                    <span class="">Plan <strong><?= $cto['pqt_nombre'] ?></strong> </span>
                                 </div>
                                 <div class="col-12">
-                                    <span class="">Facturación anual</span>
+                                    <span class=""><?= $cto['pcto_periodo'] == "1 month" ? "Facturación mensual" : "Facturación anual" ?></span>
                                 </div>
                                 <div class="col-12">
-                                    <span class="">245 / mes </span>
+                                    <span class=""><?= $cto['pcto_costo'] ?> / <?= $cto['pcto_periodo'] == "1 month" ? "1 mes" : "1 año" ?> </span>
                                 </div>
                             </div>
 
@@ -233,8 +246,8 @@
 
 
                                 <P class="text-center mb-3">¿Tienes un cupón?</P>
-                                <input type="text" class="form-control" value="365363" readonly>
-                                <small id="" class="text-success mb-4">Cupón aplicado</small>
+                                <input type="text" class="form-control" id="cps_codigo" value="" readonly>
+                                <small id="text-cupon" class="mb-4">Cupón aplicado</small>
 
                                 <hr>
 
@@ -244,7 +257,7 @@
                                             <p>Descuento del cupon ....</p>
                                         </td>
                                         <th class="text-end">
-                                            <p>MX$1,260</p>
+                                            <p id="descuento_cupon"></p>
                                         </th>
                                     </tr>
                                     <tr>
@@ -252,7 +265,7 @@
                                             <p>Sub total ....</p>
                                         </td>
                                         <th class="text-end">
-                                            <p>MX$4,200</p>
+                                            <p id="subtotal"></p>
                                         </th>
                                     </tr>
                                     <tr>
@@ -260,7 +273,7 @@
                                             <p>Total del pedido ....</p>
                                         </td>
                                         <th class="text-end">
-                                            <p>MX$2,940 / año </p>
+                                            <p id="total"> </p>
                                         </th>
                                     </tr>
                                 </table>
@@ -427,6 +440,60 @@
             checkStatus();
             $(".cardStrype").removeClass('d-none')
         })
+
+        $('#btnRegistrarGratis').on('click', function() {
+            $(".pos-auttetication-registro").removeClass("d-none");
+            $(".pos-auttetication-off").addClass("d-none");
+        });
+
+        $('#btnIniciarSesion').on('click', function() {
+            var usr_id = $("#usr_id").val();
+            var usr_clave = $("#usr_clave").val();
+
+            if (usr_id == "") {
+                $("#usr_id").focus();
+                return toastr.warning("El correo es obligatorio.", '¡ADVERTENCIA!');
+            }
+            if (usr_clave == "") {
+                $("#usr_clave").focus();
+                return toastr.warning("La contraseña es obligatoria.", '¡ADVERTENCIA!');
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '<?= URL_SOFTMOR_POS ?>loginSoftmorPosV2',
+                data: JSON.stringify({
+                    'usr_id': usr_id,
+                    'usr_clave': usr_clave,
+                    'cto_id': '<?= $cto['cto_id'] ?>'
+                }),
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.status) {
+                        toastr.success(res.mensaje, '¡Muy bien!');
+                        // $(".pos-auttetication-on").removeClass("d-none");
+                        // $(".pos-auttetication-off").addClass("d-none");
+
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        toastr.error(res.mensaje, '¡ERROR!');
+                    }
+                }
+            });
+        });
+
+        function formatearMoneda(valor) {
+            // Formatear el número en moneda mexicana con 2 decimales
+            return valor.toLocaleString('es-MX', {
+                style: 'currency',
+                currency: 'MXN',
+                minimumFractionDigits: 2
+            });
+        }
     </script>
 
 
@@ -434,3 +501,63 @@
 </body>
 
 </html>
+<?php
+if (isset($_GET['ref'])) :
+?>
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: '<?= URL_SOFTMOR_POS ?>' + 'consultar-ref/' + '<?= $_GET['ref'] ?>',
+            // data: datos,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function(res) {
+                if (res.status) {
+                    $("#cps_codigo").val(res.cps.cps_codigo);
+                    $("#text-cupon").addClass("text-success");
+                    $("#text-cupon").removeClass("text-danger");
+                    // $(".input-promocional").removeClass("d-none");
+
+                    var desc_cupon = '<?= $cto['pcto_costo'] ?>' - ('<?= $cto['pcto_costo'] ?>' * res.cps.cps_descuento_a / 100);
+                    var descuento = desc_cupon * 12;
+                    var subtotal = '<?= $cto['pcto_costo'] ?>' * 12;
+                    var descuento_total = subtotal - descuento;
+                    var total = subtotal - descuento_total;
+
+                    $("#descuento_cupon").text("MX " + formatearMoneda(descuento_total))
+                    $("#subtotal").text("MX " + formatearMoneda(subtotal))
+                    $("#total").text("MX " + formatearMoneda(total))
+
+                } else {
+                    $("#cps_codigo").val("");
+                    $("#text-cupon").addClass("text-danger");
+                    $("#text-cupon").removeClass("text-success");
+
+                    var subtotal = '<?= $cto['pcto_costo'] ?>' * 12;
+                    var descuento_total = 0;
+                    var total = subtotal - descuento_total;
+
+                    $("#descuento_cupon").text("MX " + formatearMoneda(descuento_total))
+                    $("#subtotal").text("MX " + formatearMoneda(subtotal))
+                    $("#total").text("MX " + formatearMoneda(total))
+                }
+            }
+        });
+    </script>
+<?php else :
+?>
+    <script>
+        $("#cps_codigo").val("");
+        $("#text-cupon").addClass("text-danger");
+        $("#text-cupon").removeClass("text-success");
+
+        var subtotal = '<?= $cto['pcto_costo'] ?>' * 12;
+        var descuento_total = 0;
+        var total = subtotal - descuento_total;
+
+        $("#descuento_cupon").text("MX " + formatearMoneda(descuento_total))
+        $("#subtotal").text("MX " + formatearMoneda(subtotal))
+        $("#total").text("MX " + formatearMoneda(total))
+    </script>
+<?php endif; ?>

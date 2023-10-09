@@ -662,6 +662,7 @@ $_plus_a = array(
             var datos = new FormData();
             datos.append("pqt_id", pqt_id);
             datos.append("cto_token_pay", cto_token_pay);
+            datos.append("ref", '<?= isset($_SESSION['ref']) ? $_SESSION['ref'] : "" ?>');
             datos.append("btnAddCarrito", true);
             $.ajax({
 

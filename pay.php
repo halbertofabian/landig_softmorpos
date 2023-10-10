@@ -236,19 +236,15 @@ if (isset($_GET['tokenpay'])) {
                                     <span class=""><?= $cto['pcto_periodo'] == "1 month" ? "Facturación mensual" : "Facturación anual" ?></span>
                                 </div>
                                 <div class="col-12">
-                                    <span class=""><?= $cto['pcto_costo'] ?> / <?= $cto['pcto_periodo'] == "1 month" ? "1 mes" : "1 año" ?> </span>
+                                    <span class=""><?= $cto['pcto_costo'] ?> / 1 mes </span>
                                 </div>
                             </div>
 
                             <hr>
                             <div class="row pos-cuenta">
-
-
-
-                                <P class="text-center mb-3">¿Tienes un cupón?</P>
-                                <input type="text" class="form-control" id="cps_codigo" value="" readonly>
-                                <small id="text-cupon" class="mb-4">Cupón aplicado</small>
-
+                                <P class="text-center mb-3 show_cupon">¿Tienes un cupón?</P>
+                                <input type="text" class="form-control show_cupon" id="cps_codigo" value="" readonly>
+                                <small id="text-cupon" class="mb-4 show_cupon">Cupón aplicado</small>
                                 <hr>
 
                                 <table style="font-size:17px">
@@ -513,11 +509,16 @@ if (isset($_GET['ref'])) :
             processData: false,
             contentType: false,
             success: function(res) {
-                if (res.status) {
-                    $("#cps_codigo").val(res.cps.cps_codigo);
-                    $("#text-cupon").addClass("text-success");
-                    $("#text-cupon").removeClass("text-danger");
-                    // $(".input-promocional").removeClass("d-none");
+                var pcto_periodo = '<?= $cto['pcto_periodo'] ?>'
+                if (res.status && pcto_periodo == '1 year') {
+                    if (res.cps.cps_descuento_a > 0) {
+                        $(".show_cupon").removeClass('d-none');
+                        $("#cps_codigo").val(res.cps.cps_codigo);
+                        $("#text-cupon").addClass("text-success");
+                        $("#text-cupon").removeClass("text-danger");
+                    } else {
+                        $(".show_cupon").addClass('d-none');
+                    }
 
                     var desc_cupon = '<?= $cto['pcto_costo'] ?>' - ('<?= $cto['pcto_costo'] ?>' * res.cps.cps_descuento_a / 100);
                     var descuento = desc_cupon * 12;
@@ -529,13 +530,20 @@ if (isset($_GET['ref'])) :
                     $("#subtotal").text("MX " + formatearMoneda(subtotal))
                     $("#total").text("MX " + formatearMoneda(total))
 
-                } else {
-                    $("#cps_codigo").val("");
-                    $("#text-cupon").addClass("text-danger");
-                    $("#text-cupon").removeClass("text-success");
+                } else if (res.status && pcto_periodo == '1 month') {
+                    if (res.cps.cps_descuento_m > 0) {
+                        $(".show_cupon").removeClass('d-none');
+                        $("#cps_codigo").val(res.cps.cps_codigo);
+                        $("#text-cupon").addClass("text-success");
+                        $("#text-cupon").removeClass("text-danger");
+                    } else {
+                        $(".show_cupon").addClass('d-none');
+                    }
 
-                    var subtotal = '<?= $cto['pcto_costo'] ?>' * 12;
-                    var descuento_total = 0;
+                    var desc_cupon = '<?= $cto['pcto_costo'] ?>' - ('<?= $cto['pcto_costo'] ?>' * res.cps.cps_descuento_m / 100);
+                    var descuento = desc_cupon * 1;
+                    var subtotal = '<?= $cto['pcto_costo'] ?>' * 1;
+                    var descuento_total = subtotal - descuento;
                     var total = subtotal - descuento_total;
 
                     $("#descuento_cupon").text("MX " + formatearMoneda(descuento_total))

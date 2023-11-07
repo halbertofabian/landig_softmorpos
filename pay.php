@@ -236,7 +236,7 @@ if (isset($_GET['tokenpay'])) {
                                     <span class=""><?= $cto['pcto_periodo'] == "1 month" ? "Facturación mensual" : "Facturación anual" ?></span>
                                 </div>
                                 <div class="col-12">
-                                    <span class=""><?= $cto['pcto_costo'] ?> / 1 mes </span>
+                                    <span class=""><?= $cto['pcto_costo'] ?> /  mes </span>
                                 </div>
                             </div>
 

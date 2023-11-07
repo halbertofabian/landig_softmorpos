@@ -556,16 +556,30 @@ if (isset($_GET['ref'])) :
 <?php else :
 ?>
     <script>
-        $("#cps_codigo").val("");
-        $("#text-cupon").addClass("text-danger");
-        $("#text-cupon").removeClass("text-success");
+        var pcto_periodo = '<?= $cto['pcto_periodo'] ?>'
+        if (pcto_periodo == '1 year') {
+            $(".show_cupon").addClass('d-none');
+            var desc_cupon = '<?= $cto['pcto_costo'] ?>' - ('<?= $cto['pcto_costo'] ?>' * 0 / 100);
+            var descuento = desc_cupon * 12;
+            var subtotal = '<?= $cto['pcto_costo'] ?>' * 12;
+            var descuento_total = subtotal - descuento;
+            var total = subtotal - descuento_total;
 
-        var subtotal = '<?= $cto['pcto_costo'] ?>' * 12;
-        var descuento_total = 0;
-        var total = subtotal - descuento_total;
+            $("#descuento_cupon").text("MX " + formatearMoneda(descuento_total))
+            $("#subtotal").text("MX " + formatearMoneda(subtotal))
+            $("#total").text("MX " + formatearMoneda(total))
 
-        $("#descuento_cupon").text("MX " + formatearMoneda(descuento_total))
-        $("#subtotal").text("MX " + formatearMoneda(subtotal))
-        $("#total").text("MX " + formatearMoneda(total))
+        } else if (pcto_periodo == '1 month') {
+            $(".show_cupon").addClass('d-none');
+            var desc_cupon = '<?= $cto['pcto_costo'] ?>' - ('<?= $cto['pcto_costo'] ?>' * 0 / 100);
+            var descuento = desc_cupon * 1;
+            var subtotal = '<?= $cto['pcto_costo'] ?>' * 1;
+            var descuento_total = subtotal - descuento;
+            var total = subtotal - descuento_total;
+
+            $("#descuento_cupon").text("MX " + formatearMoneda(descuento_total))
+            $("#subtotal").text("MX " + formatearMoneda(subtotal))
+            $("#total").text("MX " + formatearMoneda(total))
+        }
     </script>
 <?php endif; ?>

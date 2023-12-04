@@ -31,7 +31,6 @@ if (isset($_GET['tokenpay'])) {
     <!-- <link rel="stylesheet" href="./css/style-sp.css"> -->
 
     <!-- Agrega jQuery para el funcionamiento del wizard -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Optional JavaScript; choose one of the two! -->
 
 

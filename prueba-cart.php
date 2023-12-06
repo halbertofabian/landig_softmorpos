@@ -1,3 +1,8 @@
+<?php
+include_once 'config.php';
+
+$nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,14 +11,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encabezado Similar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="./css/checkout.css" />
 
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" href="./css/checkout.css" />
 
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <style>
         .bg-primary {
             background-color: #1560F9 !important;
@@ -187,6 +195,32 @@
 
                                         </table>
                                         <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
+                                        <div class="row">
+                                            <div class="col-12 mb-2">
+                                                <div class="btn-group w-100" role="group" aria-label="Button group name">
+                                                    <button type="button" class="btn btn-primary btnCargarComprobante" item="local"><i class="fa fa-image"></i> Cargar imagen</button>
+                                                    <button type="button" class="btn btn-dark btnCargarComprobante" item="qr"><i class="fa fa-qrcode"></i> QR</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 cto_comprobante d-none">
+                                                <form id="formGuardarComprobante">
+                                                    <div class="form-group">
+                                                        <label for="pds_imagen">Subir imagen</label>
+                                                        <input type="hidden" name="token" value="<?= $_GET['tokenpay'] ?>">
+                                                        <input type="file" class="form-control" name="pds_imagen" id="" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary">Subir comprobante</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-12 cto_qr d-none">
+                                                <span>Escanea este código QR para subir el comprobante de pago</span><br>
+                                                <a href="<?= $nueva_url ?>/file_landing.php?token=<?= $_GET['tokenpay'] ?>" target="_blank" id="enlace-con-token">
+                                                    <img src="" id="img-QR" width="250" alt=""><br>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +228,7 @@
                             <div class="accordion-item payment-method">
                                 <h2 class="accordion-header payment-method-header" id="headingfour">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#deposit" aria-expanded="false" aria-controls="deposit">
-                                        Deposito en OXXO o ventanilla BBVA 
+                                        Deposito en OXXO o ventanilla BBVA
                                     </button>
                                 </h2>
                                 <div id="deposit" class="accordion-collapse collapse " aria-labelledby="headingfour" data-bs-parent="#paymentMethods">
@@ -220,6 +254,32 @@
 
                                         </table>
                                         <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
+                                        <div class="row">
+                                            <div class="col-12 mb-2">
+                                                <div class="btn-group w-100" role="group" aria-label="Button group name">
+                                                    <button type="button" class="btn btn-primary btnCargarComprobante2" item="local"><i class="fa fa-image"></i> Cargar imagen</button>
+                                                    <button type="button" class="btn btn-dark btnCargarComprobante2" item="qr"><i class="fa fa-qrcode"></i> QR</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 cto_comprobante2 d-none">
+                                                <form id="formGuardarComprobante2">
+                                                    <div class="form-group">
+                                                        <label for="pds_imagen">Subir imagen</label>
+                                                        <input type="hidden" name="token" value="<?= $_GET['tokenpay'] ?>">
+                                                        <input type="file" class="form-control" name="pds_imagen" id="" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary">Subir comprobante</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-12 cto_qr2 d-none">
+                                                <span>Escanea este código QR para subir el comprobante de pago</span><br>
+                                                <a href="<?= $nueva_url ?>/file_landing.php?token=<?= $_GET['tokenpay'] ?>" target="_blank" id="enlace-con-token">
+                                                    <img src="" id="img-QR2" width="250" alt=""><br>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -294,6 +354,142 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script>
+        $(document).on('click', '.btnCargarComprobante', function() {
+            var item = $(this).attr('item');
+            if (item == 'local') {
+                $(".cto_comprobante").removeClass('d-none');
+                $(".cto_qr").addClass('d-none');
+            } else {
+                generarQR();
+
+            }
+        });
+
+        function generarQR() {
+            $.ajax({
+                type: 'GET',
+                url: '<?= URL_SOFTMOR_POS ?>' + 'generar/QR/' + '<?= $_GET['tokenpay'] ?>',
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    var dir = '<?= $nueva_url ?>' + '/upload/qr_generator/files';
+                    var filename = dir + "/f_" + '<?= $_GET['tokenpay'] ?>' + '.jpg';
+                    $("#img-QR").attr("src", filename);
+                    $(".cto_comprobante").addClass('d-none');
+                    $(".cto_qr").removeClass('d-none');
+                }
+            });
+        }
+        $(document).on('click', '.btnCargarComprobante2', function() {
+            var item = $(this).attr('item');
+            if (item == 'local') {
+                $(".cto_comprobante2").removeClass('d-none');
+                $(".cto_qr2").addClass('d-none');
+            } else {
+                generarQR2();
+
+            }
+        });
+
+        function generarQR2() {
+            $.ajax({
+                type: 'GET',
+                url: '<?= URL_SOFTMOR_POS ?>' + 'generar/QR/' + '<?= $_GET['tokenpay'] ?>',
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    var dir = '<?= $nueva_url ?>' + '/upload/qr_generator/files';
+                    var filename = dir + "/f_" + '<?= $_GET['tokenpay'] ?>' + '.jpg';
+                    $("#img-QR2").attr("src", filename);
+                    $(".cto_comprobante2").addClass('d-none');
+                    $(".cto_qr2").removeClass('d-none');
+                }
+            });
+        }
+
+        $('#formGuardarComprobante').on('submit', function(e) {
+            e.preventDefault();
+            var datos = new FormData(this)
+            datos.append('btnGuardarComprobante', true);
+            $.ajax({
+                type: 'POST',
+                url: '<?= URL_SOFTMOR_POS ?>' + 'guardar/comprobante',
+                data: datos,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    startLoadButton()
+                },
+                success: function(res) {
+                    stopLoadButton("Subir comprobante");
+                    if (res.status) {
+                        swal({
+                            title: '¡Bien!',
+                            text: res.mensaje,
+                            type: 'success',
+                            icon: 'success'
+                        }).then(function() {
+                            $('#formGuardarComprobante')[0].reset();
+
+                        });
+
+                    } else {
+                        swal('Oops', res.mensaje, 'error');
+                    }
+                },
+            });
+        });
+        $('#formGuardarComprobante2').on('submit', function(e) {
+            e.preventDefault();
+            var datos = new FormData(this)
+            datos.append('btnGuardarComprobante', true);
+            $.ajax({
+                type: 'POST',
+                url: '<?= URL_SOFTMOR_POS ?>' + 'guardar/comprobante',
+                data: datos,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    startLoadButton()
+                },
+                success: function(res) {
+                    stopLoadButton("Subir comprobante");
+                    if (res.status) {
+                        swal({
+                            title: '¡Bien!',
+                            text: res.mensaje,
+                            type: 'success',
+                            icon: 'success'
+                        }).then(function() {
+                            $('#formGuardarComprobante2')[0].reset();
+
+                        });
+
+                    } else {
+                        swal('Oops', res.mensaje, 'error');
+                    }
+                },
+            });
+        });
+
+        function startLoadButton() {
+            $(".btn-load").attr("disabled", true);
+            $(".btn-load").html(` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Por favor espere...`)
+        }
+
+        function stopLoadButton(label) {
+            $(".btn-load").attr("disabled", false);
+            if (label == "") {
+                $(".btn-load").html("ACEPTAR");
+            } else {
+                $(".btn-load").html(label);
+            }
+        }
         document.addEventListener('DOMContentLoaded', (event) => {
             const targetDate = new Date("2023-12-31T23:59:59").getTime(); // Ajusta esta fecha a tu objetivo
 

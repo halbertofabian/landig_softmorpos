@@ -210,7 +210,7 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
                                                         <input type="file" class="form-control" name="pds_imagen" id="" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary">Subir comprobante</button>
+                                                        <button type="submit" class="btn btn-primary btn-load">Subir comprobante</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -269,7 +269,7 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
                                                         <input type="file" class="form-control" name="pds_imagen" id="" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary">Subir comprobante</button>
+                                                        <button type="submit" class="btn btn-primary btn-load">Subir comprobante</button>
                                                     </div>
                                                 </form>
                                             </div>

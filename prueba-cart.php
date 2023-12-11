@@ -2,6 +2,8 @@
 include_once 'config.php';
 
 $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
+$respuesta = file_get_contents(URL_SOFTMOR_POS . 'consultar-carrito/' . $_GET['tokenpay']);
+$cto = json_decode($respuesta, true);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,17 +14,19 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
     <title>Encabezado Similar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <link rel="stylesheet" href="./css/checkout.css" />
-
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <link rel="stylesheet" href="./css/checkout.css" />
 
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
     <style>
+        body {
+            background-color: #F8F9FA;
+        }
+
         .bg-primary {
             background-color: #1560F9 !important;
             /* Asegúrate de usar el color de tu marca */
@@ -118,193 +122,272 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
             width: 30px;
             /* Ajusta este valor según necesites */
         }
+
+        @media (max-width: 768px) {
+
+            .input-group.mb-3,
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                align-items: start;
+            }
+        }
+
+        bg-light {
+            background-color: #FFF;
+        }
     </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+<body style="margin-bottom: 200px;">
+    <nav class="navbar navbar-expand-lg  mb-5" style="background-color: #fff;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="path-to-your-logo.png" alt="Logo" style="margin-left: 25%;">
+                <img src="https://prueba.softmor.com/upload/ifixit_cliente/6ed53c635a48fc87236d2aaaa684e4c7/medios/655febd58f452.svg" alt="Logo" style="margin-left: 25%;">
             </a>
-            <div class="ms-auto">
+            <!-- <div class="ms-auto">
                 <button class="btn btn-outline-primary" type="button">Iniciar sesión</button>
-            </div>
+            </div> -->
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <span class="float-end">¿Ya tienes cuenta? <a href="">Iniciar sesión</a> </span>
+                            <span class="float-end">¿Ya tienes cuenta? <a href="https://app.softmor.com">Iniciar sesión</a> </span>
                         </div>
-                        <div class="form-group">
-                            <label for="">Contacto</label>
-                            <input type="text" name="" id="" class="form-control" placeholder="Correo electrónico">
+                        <div class="form-group mt-2 mb-1">
+                            <label for="correo_registro"> <strong style="font-size:18px" >Registrate</strong> </label>
+                            <input type="text" name="correo_registro" id="correo_registro" class="form-control" placeholder="Correo electrónico" required>
+                            <small id="helpId_correo" class="form-text text-muted text-danger d-none"></small>
                         </div>
-
-
-                        <h4 class="mt-5">Pago</h4>
-                        <span>Todas las transacciones son seguras y están encriptadas.</span>
-
-                        <div class="accordion" id="paymentMethods">
-
-                            <div class="accordion-item payment-method">
-                                <h2 class="accordion-header payment-method-header" id="headingtwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creditCard" aria-expanded="false" aria-controls="creditCard">
-                                        Tarjeta de crédito
-                                    </button>
-                                </h2>
-                                <div id="creditCard" class="accordion-collapse collapse" aria-labelledby="headingtwo" data-bs-parent="#paymentMethods">
-                                    <div class="accordion-body">
-                                        <!-- Contenido del formulario de tarjeta de crédito aquí -->
-                                        Tarjeta
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item payment-method">
-                                <h2 class="accordion-header payment-method-header" id="headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transfer" aria-expanded="false" aria-controls="transfer">
-                                        Transferencia
-                                    </button>
-                                </h2>
-                                <div id="transfer" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#paymentMethods">
-                                    <div class="accordion-body">
-                                        <!-- Contenido del formulario de tarjeta de crédito aquí -->
-                                        <table class="table">
-                                            <tr>
-                                                <th>Banco</th>
-                                                <td>STP</td>
-                                            </tr>
-                                            <tr>
-                                                <th>CLABE interbancaria</th>
-                                                <td>646017206890351424</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <td>Softmor Tecnología</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Referencia de pago</th>
-                                                <td>733393</td>
-                                            </tr>
-
-                                        </table>
-                                        <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
-                                        <div class="row">
-                                            <div class="col-12 mb-2">
-                                                <div class="btn-group w-100" role="group" aria-label="Button group name">
-                                                    <button type="button" class="btn btn-primary btnCargarComprobante" item="local"><i class="fa fa-image"></i> Cargar imagen</button>
-                                                    <button type="button" class="btn btn-dark btnCargarComprobante" item="qr"><i class="fa fa-qrcode"></i> QR</button>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 cto_comprobante d-none">
-                                                <form id="formGuardarComprobante">
-                                                    <div class="form-group">
-                                                        <label for="pds_imagen">Subir imagen</label>
-                                                        <input type="hidden" name="token" value="<?= $_GET['tokenpay'] ?>">
-                                                        <input type="file" class="form-control" name="pds_imagen" id="" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary btn-load">Subir comprobante</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="col-12 cto_qr d-none">
-                                                <span>Escanea este código QR para subir el comprobante de pago</span><br>
-                                                <a href="<?= $nueva_url ?>/file_landing.php?token=<?= $_GET['tokenpay'] ?>" target="_blank" id="enlace-con-token">
-                                                    <img src="" id="img-QR" width="250" alt=""><br>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item payment-method">
-                                <h2 class="accordion-header payment-method-header" id="headingfour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#deposit" aria-expanded="false" aria-controls="deposit">
-                                        Deposito en OXXO o ventanilla BBVA
-                                    </button>
-                                </h2>
-                                <div id="deposit" class="accordion-collapse collapse " aria-labelledby="headingfour" data-bs-parent="#paymentMethods">
-                                    <div class="accordion-body">
-                                        <!-- Contenido del formulario de tarjeta de crédito aquí -->
-                                        <table class="table">
-                                            <tr>
-                                                <th>Banco</th>
-                                                <td>BBVA</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Número de cuenta</th>
-                                                <td>4152 3136 7828 3263</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <td>Héctor Alberto López Fabián</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Referencia de pago</th>
-                                                <td>733393</td>
-                                            </tr>
-
-                                        </table>
-                                        <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
-                                        <div class="row">
-                                            <div class="col-12 mb-2">
-                                                <div class="btn-group w-100" role="group" aria-label="Button group name">
-                                                    <button type="button" class="btn btn-primary btnCargarComprobante2" item="local"><i class="fa fa-image"></i> Cargar imagen</button>
-                                                    <button type="button" class="btn btn-dark btnCargarComprobante2" item="qr"><i class="fa fa-qrcode"></i> QR</button>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 cto_comprobante2 d-none">
-                                                <form id="formGuardarComprobante2">
-                                                    <div class="form-group">
-                                                        <label for="pds_imagen">Subir imagen</label>
-                                                        <input type="hidden" name="token" value="<?= $_GET['tokenpay'] ?>">
-                                                        <input type="file" class="form-control" name="pds_imagen" id="" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary btn-load">Subir comprobante</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="col-12 cto_qr2 d-none">
-                                                <span>Escanea este código QR para subir el comprobante de pago</span><br>
-                                                <a href="<?= $nueva_url ?>/file_landing.php?token=<?= $_GET['tokenpay'] ?>" target="_blank" id="enlace-con-token">
-                                                    <img src="" id="img-QR2" width="250" alt=""><br>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item payment-method">
-                                <h2 class="accordion-header payment-method-header" id="headingTree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#paypal" aria-expanded="false" aria-controls="paypal">
-                                        PayPal
-                                    </button>
-                                </h2>
-                                <div id="paypal" class="accordion-collapse collapse" aria-labelledby="headingTree" data-bs-parent="#paymentMethods">
-                                    <div class="accordion-body">
-                                        <!-- Contenido del formulario de PayPal aquí -->
-                                        Paypal
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Repite la estructura para los otros métodos de pago -->
+                        <div class="form-group ">
+                            <button type="button" class="btn btn-primary float-end mt-1" id="btnContinuar">Continuar</button>
                         </div>
-
                     </div>
+                    <div class="col-12 d-none div-carrito">
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="card m-2">
+                                        <img src="https://prueba.softmor.com/upload/ifixit_cliente/6ed53c635a48fc87236d2aaaa684e4c7/medios/655febd58f452.svg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">SOFTMOR POS ANUAL</h5>
+                                            <p class="card-text"> <s>$4200.00</s> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-8">
+                                    <div class="form-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Código de descuento o tarjeta de regalo">
+                                        <button class="btn btn-outline-secondary" type="button">Aplicar</button>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Subtotal</span>
+                                        <span>$4,200.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Descuento (50%)</span>
+                                        <span>$2,100.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between my-3">
+                                        <span><strong>Total</strong></span>
+                                        <span><strong>MXN $2,100.00</strong></span>
+                                    </div>
+                                    <!-- <div class="d-flex justify-content-between my-3 nota d-none">
+                                <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
+                            </div>
+                            <div class="form-group mb-3  nota d-none">
+                                <button class="btn btn-primary btnContinuar" type="button">Continuar</button>
+                            </div> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
-            <div class="col-md-6"></div>
+            <div class="col-md-6 d-none div-metodos-pago">
+                <!-- <h4 class="">Pago</h4> -->
+                <strong style="font-size:18px" >Pago</strong><br>
+                <span>Todas las transacciones son seguras y están encriptadas.</span>
+                <div class="accordion" id="paymentMethods">
+
+                    <div class="accordion-item payment-method">
+                        <h2 class="accordion-header payment-method-header" id="headingtwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#creditCard" aria-expanded="false" aria-controls="creditCard">
+                                Tarjeta de crédito
+                            </button>
+                        </h2>
+                        <div id="creditCard" class="accordion-collapse collapse" aria-labelledby="headingtwo" data-bs-parent="#paymentMethods">
+                            <div class="accordion-body">
+                                <!-- Contenido del formulario de tarjeta de crédito aquí -->
+                                <div class="card-body d-none cardStrype ">
+                                    <!-- Display a payment form -->
+
+                                    <form id="payment-form">
+                                        <div id="link-authentication-element">
+                                            <!--Stripe.js injects the Link Authentication Element-->
+                                        </div>
+                                        <div id="payment-element">
+                                            <!--Stripe.js injects the Payment Element-->
+                                        </div>
+                                        <button id="submit">
+                                            <div class="spinner hidden" id="spinner"></div>
+                                            <span id="button-text">Continuar</span>
+                                        </button>
+                                        <div id="payment-message" class="hidden"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item payment-method">
+                        <h2 class="accordion-header payment-method-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transfer" aria-expanded="false" aria-controls="transfer">
+                                Transferencia
+                            </button>
+                        </h2>
+                        <div id="transfer" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#paymentMethods">
+                            <div class="accordion-body">
+                                <!-- Contenido del formulario de tarjeta de crédito aquí -->
+                                <table class="table">
+                                    <tr>
+                                        <th>Banco</th>
+                                        <td>STP</td>
+                                    </tr>
+                                    <tr>
+                                        <th>CLABE interbancaria</th>
+                                        <td>646017206890351424</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <td>Softmor Tecnología</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Referencia de pago</th>
+                                        <td><?= $cto['cto_referencia'] ?></td>
+                                    </tr>
+
+                                </table>
+                                <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <div class="btn-group w-100" role="group" aria-label="Button group name">
+                                            <button type="button" class="btn btn-danger btnCargarComprobante" item="local"><i class="fa fa-image"></i> Cargar comprobante</button>
+                                            <button type="button" class="btn btn-dark btnCargarComprobante" item="qr"><i class="fa fa-qrcode"></i> QR</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 cto_comprobante d-none">
+                                        <form id="formGuardarComprobante">
+                                            <div class="form-group">
+                                                <label for="pds_imagen">Subir imagen</label>
+                                                <input type="hidden" name="token" value="<?= $_GET['tokenpay'] ?>">
+                                                <input type="file" class="form-control" name="pds_imagen" id="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-load">Subir comprobante</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-12 cto_qr d-none text-center">
+                                        <span>Escanea este código QR para subir el comprobante de pago</span><br>
+                                        <a href="<?= $nueva_url ?>/file_landing.php?token=<?= $_GET['tokenpay'] ?>" target="_blank" id="enlace-con-token">
+                                            <img src="" id="img-QR" width="250" alt=""><br>
+                                        </a>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <button class="btn btn-primary btnContinuar" type="button">Continuar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item payment-method">
+                        <h2 class="accordion-header payment-method-header" id="headingfour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#deposit" aria-expanded="false" aria-controls="deposit">
+                                Deposito en OXXO o ventanilla BBVA
+                            </button>
+                        </h2>
+                        <div id="deposit" class="accordion-collapse collapse " aria-labelledby="headingfour" data-bs-parent="#paymentMethods">
+                            <div class="accordion-body">
+                                <!-- Contenido del formulario de tarjeta de crédito aquí -->
+                                <table class="table">
+                                    <tr>
+                                        <th>Banco</th>
+                                        <td>BBVA</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Número de cuenta</th>
+                                        <td>4152 3136 7828 3263</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <td>Héctor Alberto López Fabián</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Referencia de pago</th>
+                                        <td><?= $cto['cto_referencia'] ?></td>
+                                    </tr>
+
+                                </table>
+                                <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <div class="btn-group w-100" role="group" aria-label="Button group name">
+                                            <button type="button" class="btn btn-danger btnCargarComprobante2" item="local"><i class="fa fa-image"></i> Cargar comprobante</button>
+                                            <button type="button" class="btn btn-dark btnCargarComprobante2" item="qr"><i class="fa fa-qrcode"></i> QR</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 cto_comprobante2 d-none">
+                                        <form id="formGuardarComprobante2">
+                                            <div class="form-group">
+                                                <label for="pds_imagen">Subir imagen</label>
+                                                <input type="hidden" name="token" value="<?= $_GET['tokenpay'] ?>">
+                                                <input type="file" class="form-control" name="pds_imagen" id="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-load">Subir comprobante</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-12 cto_qr2 d-none">
+                                        <span>Escanea este código QR para subir el comprobante de pago</span><br>
+                                        <a href="<?= $nueva_url ?>/file_landing.php?token=<?= $_GET['tokenpay'] ?>" target="_blank" id="enlace-con-token">
+                                            <img src="" id="img-QR2" width="250" alt=""><br>
+                                        </a>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <button class="btn btn-primary btnContinuar" type="button">Continuar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item payment-method">
+                        <h2 class="accordion-header payment-method-header" id="headingTree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#paypal" aria-expanded="false" aria-controls="paypal">
+                                PayPal
+                            </button>
+                        </h2>
+                        <div id="paypal" class="accordion-collapse collapse" aria-labelledby="headingTree" data-bs-parent="#paymentMethods">
+                            <div class="accordion-body">
+                                <!-- Contenido del formulario de PayPal aquí -->
+                                Paypal
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Repite la estructura para los otros métodos de pago -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -314,7 +397,7 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
 
 
 
-    <!-- <footer class="bg-dark text-light py-3">
+    <footer class="bg-dark text-light py-3 footer fixed-bottom mt-5">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
@@ -325,7 +408,7 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
                 </div>
             </div>
         </div>
-    </footer> -->
+    </footer>
 
 
 
@@ -490,6 +573,59 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
                 $(".btn-load").html(label);
             }
         }
+        $(document).on('click', '#btnContinuar', function() {
+            var correo_registro = $.trim($("#correo_registro").val());
+            if (correo_registro == "") {
+                swal('Oops', '¡El correo es obligatorio!', 'error');
+                return false;
+            }
+            var datos = new FormData();
+            datos.append('correo_registro', correo_registro);
+            datos.append('btnCorreoRegitro', true);
+            $.ajax({
+                type: 'POST',
+                url: '<?= URL_SOFTMOR_POS ?>' + 'guardar/correo',
+                data: datos,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.status) {
+                        $("#correo_registro").removeClass('border-danger');
+                        $("#correo_registro").addClass('border-success');
+                        $("#correo_registro").attr('readonly', true);
+                        $("#helpId_correo").addClass("d-none");
+                        $("#helpId_correo").text("");
+
+                        $("#btnContinuar").addClass('d-none');
+                        $(".div-metodos-pago").removeClass('d-none');
+                        $(".div-carrito").removeClass('d-none');
+                    } else {
+                        $("#correo_registro").removeClass('border-success');
+                        $("#correo_registro").addClass('border-danger');
+                        $("#helpId_correo").removeClass("d-none");
+                        $("#helpId_correo").text(res.mensaje);
+                    }
+                }
+            });
+        });
+
+        $('#paymentMethods').on('show.bs.collapse', function(event) {
+            var panelId = $(event.target).attr('id');
+            if (panelId == 'transfer' || panelId == 'deposit') {
+                $(".nota").removeClass('d-none');
+            } else {
+                $(".nota").addClass('d-none');
+            }
+        });
+
+        $('#paymentMethods').on('hide.bs.collapse', function(event) {
+            var panelId = $(event.target).attr('id');
+            if (panelId == 'creditCard') {
+                $(".nota").addClass('d-none');
+            }
+
+        });
         document.addEventListener('DOMContentLoaded', (event) => {
             const targetDate = new Date("2023-12-31T23:59:59").getTime(); // Ajusta esta fecha a tu objetivo
 
@@ -617,7 +753,7 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "http://localhost/mp/success.php",
+                    return_url: "http://localhost/landig-page-sp/success.php",
                     receipt_email: emailAddress,
                 },
             });
@@ -697,10 +833,21 @@ $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
 
 
         $("#v-pills-credit-tab").on("click", function() {
-            initialize();
-            checkStatus();
+
             // $(").removeClass('d-none')
         })
+
+        $('#paymentMethods').on('show.bs.collapse', function(event) {
+            var panelId = $(event.target).attr('id');
+            if (panelId == 'creditCard') {
+                $(".cardStrype").removeClass('d-none');
+                initialize();
+                checkStatus();
+            } else {
+                $(".cardStrype").addClass('d-none');
+
+            }
+        });
 
         $('#btnRegistrarGratis').on('click', function() {
             $(".pos-auttetication-registro").removeClass("d-none");

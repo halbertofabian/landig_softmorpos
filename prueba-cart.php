@@ -753,7 +753,7 @@ $cto = json_decode($respuesta, true);
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "http://localhost/landig-page-sp/success.php",
+                    return_url: "http://localhost/landing-page-sp/success.php",
                     receipt_email: emailAddress,
                 },
             });

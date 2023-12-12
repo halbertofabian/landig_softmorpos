@@ -160,7 +160,7 @@ $cto = json_decode($respuesta, true);
                         </div>
                         <div class="form-group mt-2 mb-1">
                             <label for="correo_registro">Registrate</label>
-                            <input type="text" name="correo_registro" id="correo_registro" class="form-control" placeholder="Correo electrónico" required>
+                            <input type="text" name="correo_registro" id="correo_registro" class="form-control" placeholder="Correo electrónico" value="<?= $cto['cto_correo_suscriptor'] ?>" required>
                             <small id="helpId_correo" class="form-text text-muted text-danger d-none"></small>
                         </div>
                         <div class="form-group ">
@@ -414,6 +414,12 @@ $cto = json_decode($respuesta, true);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script>
+        $(document).ready(function() {
+            var cto_correo_suscriptor = '<?= $cto['cto_correo_suscriptor'] ?>';
+            if (cto_correo_suscriptor !== "") {
+                $("#btnContinuar").click();
+            }
+        })
         $(document).on('click', '.btnCargarComprobante', function() {
             var item = $(this).attr('item');
             if (item == 'local') {
@@ -577,6 +583,16 @@ $cto = json_decode($respuesta, true);
                         $("#btnContinuar").addClass('d-none');
                         $(".div-metodos-pago").removeClass('d-none');
                         $(".div-carrito").removeClass('d-none');
+                    }else if('<?= isset($_GET['correo_suscriptor']) ?>'){
+                        $("#correo_registro").removeClass('border-danger');
+                        $("#correo_registro").addClass('border-success');
+                        $("#correo_registro").attr('readonly', true);
+                        $("#helpId_correo").addClass("d-none");
+                        $("#helpId_correo").text("");
+
+                        $("#btnContinuar").addClass('d-none');
+                        $(".div-metodos-pago").removeClass('d-none');
+                        $(".div-carrito").removeClass('d-none');
                     } else {
                         $("#correo_registro").removeClass('border-success');
                         $("#correo_registro").addClass('border-danger');
@@ -586,7 +602,7 @@ $cto = json_decode($respuesta, true);
                 }
             });
         });
-        
+
         $('#paymentMethods').on('show.bs.collapse', function(event) {
             var panelId = $(event.target).attr('id');
             if (panelId == 'transfer' || panelId == 'deposit') {

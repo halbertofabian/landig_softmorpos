@@ -160,7 +160,7 @@ $cto = json_decode($respuesta, true);
                         </div>
                         <div class="form-group mt-2 mb-1">
                             <label for="correo_registro"> <strong style="font-size:18px">Registrate</strong> </label>
-                            <input type="text" name="correo_registro" id="correo_registro" class="form-control" placeholder="Correo electrónico" required>
+                            <input type="text" name="correo_registro" id="correo_registro" class="form-control" placeholder="Correo electrónico" value="<?= $cto['cto_correo_suscriptor'] ?>" required>
                             <small id="helpId_correo" class="form-text text-muted text-danger d-none"></small>
                         </div>
                         <div class="form-group ">

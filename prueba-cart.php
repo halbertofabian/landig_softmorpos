@@ -587,6 +587,7 @@ $cto = json_decode($respuesta, true);
             }
             var datos = new FormData();
             datos.append('correo_registro', correo_registro);
+            datos.append('cto_token_pay', '<?= $_GET['tokenpay'] ?>');
             datos.append('btnCorreoRegitro', true);
             $.ajax({
                 type: 'POST',
@@ -641,6 +642,12 @@ $cto = json_decode($respuesta, true);
                 $(".nota").addClass('d-none');
             }
 
+        });
+
+        $(document).on('click', '.btnContinuar', function() {
+            var payment_intent_client_secret = Date.now();
+
+            window.location.href = '<?= HTTP_HOST ?>' + 'success.php?payment_intent=' + '<?= $_GET['tokenpay'] ?>' + '&payment_intent_client_secret=' + payment_intent_client_secret + '&redirect_status=succeeded';
         });
         document.addEventListener('DOMContentLoaded', (event) => {
             const targetDate = new Date("2023-12-31T23:59:59").getTime(); // Ajusta esta fecha a tu objetivo

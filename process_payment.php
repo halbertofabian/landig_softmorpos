@@ -41,6 +41,7 @@ try {
 
   // API PARA AGREGAR EL CLIENT SECRET
 
+  
 
   $output = [
     'clientSecret' => $paymentIntent->client_secret,

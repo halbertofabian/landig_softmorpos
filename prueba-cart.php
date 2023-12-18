@@ -230,15 +230,15 @@ $tipo_descuento = '';
                                     <?php if (!empty($cto['cto_cupon'])) : ?>
                                         <div class="input-group mb-5">
                                             <input type="text" style="border: 1px solid #00A67D" class="form-control" value="<?= $cto['cto_cupon'] ?>" aria-label="Discount code" readonly>
-                                            <span class="input-group-text btn-danger" id="basic-addon2">
+                                            <span class="input-group-text btn-danger btnQuitarCupon" id="basic-addon2">
                                                 <i class="fas fa-trash"></i>
                                             </span>
                                         </div>
                                     <?php else : ?>
                                         <div class="form-group mb-5">
                                             <label for="">¿Tienes un cupón de descuento?</label>
-                                            <input type="text" name="" id="" class="form-control" placeholder="Código de descuento o tarjeta de regalo">
-                                            <a href="" class="float-end">Aplicar cupón</a>
+                                            <input type="text" name="" id="cps_codigo" class="form-control" placeholder="Código de descuento o tarjeta de regalo">
+                                            <a href="javascript:void()" class="float-end btnAplicarCupon">Aplicar cupón</a>
                                         </div>
 
                                     <?php endif; ?>
@@ -268,9 +268,11 @@ $tipo_descuento = '';
                                     <?php
 
                                     // EJECUTAR API
-                                        
+
                                     // $tokey_pay
                                     // $total_pagar
+
+                                    $res_total = file_get_contents(URL_SOFTMOR_POS . 'carrito/total/' . $total_pagar . '/tokenpay/' . $_GET['tokenpay']);
 
                                     ?>
                                     <!-- <div class="d-flex justify-content-between my-3 nota d-none">
@@ -726,6 +728,70 @@ $tipo_descuento = '';
 
             window.location.href = '<?= HTTP_HOST ?>' + 'success.php?payment_intent=' + '<?= $_GET['tokenpay'] ?>' + '&payment_intent_client_secret=' + payment_intent_client_secret + '&redirect_status=succeeded';
         });
+
+        $(document).on('click', '.btnQuitarCupon', function() {
+            swal({
+                title: '¿Esta seguro de eliminar el cupón?',
+                text: 'Esta accion no es reversible',
+                icon: 'warning',
+                buttons: ['No', 'Si, eliminar'],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '<?= URL_SOFTMOR_POS ?>' + 'carrito/quitar/cupon/' + '<?= $_GET['tokenpay'] ?>',
+                        dataType: 'json',
+                        processData: false,
+                        contentType: false,
+                        success: function(res) {
+                            if (res.status) {
+                                swal({
+                                    title: '¡Bien!',
+                                    text: res.mensaje,
+                                    type: 'success',
+                                    icon: 'success'
+                                }).then(function() {
+                                    location.reload();
+                                });
+                            } else {
+                                toastr.error(res.mensaje, '¡ERROR!');
+                            }
+                        }
+                    });
+                } else {}
+            });
+
+        });
+
+        $(document).on('click', '.btnAplicarCupon', function() {
+            var cps_codigo = $.trim($("#cps_codigo").val());
+            var datos = new FormData();
+            datos.append('cps_codigo', cps_codigo);
+            datos.append('cto_token_pay', '<?= $_GET['tokenpay'] ?>');
+            $.ajax({
+                type: 'POST',
+                url: '<?= URL_SOFTMOR_POS ?>' + 'cupon/validar',
+                data: datos,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.status) {
+                        swal({
+                            title: '¡Bien!',
+                            text: res.mensaje,
+                            type: 'success',
+                            icon: 'success'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    } else {
+                        swal('Oops', res.mensaje, 'error');
+                    }
+                }
+            });
+        });
         document.addEventListener('DOMContentLoaded', (event) => {
             const targetDate = new Date("2023-12-31T23:59:59").getTime(); // Ajusta esta fecha a tu objetivo
 
@@ -797,7 +863,6 @@ $tipo_descuento = '';
     </script>
 
     <script>
-        
         // This is your test publishable API key.
         const stripe = Stripe("pk_test_PnY5miBnJ7yeI6nMz7wMer2E00m3y2zff9");
 

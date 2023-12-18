@@ -724,9 +724,22 @@ $tipo_descuento = '';
         });
 
         $(document).on('click', '.btnContinuar', function() {
-            var payment_intent_client_secret = Date.now();
+            $.ajax({
+                type: 'GET',
+                url: '<?= URL_SOFTMOR_POS ?>' + 'consultar-carrito/' + '<?= $_GET['tokenpay'] ?>',
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    var payment_intent_client_secret = res.cto_id_pay;
+                    if (payment_intent_client_secret == "") {
+                        swal('Advertencia', 'Espere a que se valide su intención de pago', 'error');
+                        return false;
+                    }
 
-            window.location.href = '<?= HTTP_HOST ?>' + 'success.php?payment_intent=' + '<?= $_GET['tokenpay'] ?>' + '&payment_intent_client_secret=' + payment_intent_client_secret + '&redirect_status=succeeded';
+                    window.location.href = '<?= HTTP_HOST ?>' + 'success.php?payment_intent=' + '<?= $_GET['tokenpay'] ?>' + '&payment_intent_client_secret=' + payment_intent_client_secret + '&redirect_status=succeeded';
+                }
+            });
         });
 
         $(document).on('click', '.btnQuitarCupon', function() {

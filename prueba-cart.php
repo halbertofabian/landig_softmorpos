@@ -4,6 +4,21 @@ include_once 'config.php';
 $nueva_url = str_replace("/api/public/", "", URL_SOFTMOR_POS);
 $respuesta = file_get_contents(URL_SOFTMOR_POS . 'consultar-carrito/' . $_GET['tokenpay']);
 $cto = json_decode($respuesta, true);
+$respuesta2 = file_get_contents(URL_SOFTMOR_POS . 'consultar-carrito-paquete/' . $cto['cto_id']);
+$array_paquetes = json_decode($respuesta2, true);
+
+if (!empty($cto['cto_cupon'])) {
+    $respuesta3 = file_get_contents(URL_SOFTMOR_POS . 'consultar-cupon/' . $cto['cto_cupon']);
+    $detalle_cupon = json_decode($respuesta3, true);
+}
+
+
+
+// CONSULTAR SI EXISTE LA CUENTA Y QUE TIPO DE USUARIO ES  
+//SI ES CLIENTE DAR DESCUENTO DE RENOVACION  $tipo_descuento = 'r';
+// SI ES INTERESADO O INTERESADOV2 O SU CUENTA NO EXISTE DAR DESCUENTO NORMAL $tipo_descuento = '';
+$tipo_descuento = '';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,7 +26,7 @@ $cto = json_decode($respuesta, true);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encabezado Similar</title>
+    <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
@@ -168,34 +183,96 @@ $cto = json_decode($respuesta, true);
                         </div>
                     </div>
                     <div class="col-12 d-none div-carrito">
-                        <div class="container my-3">
+                        <div class=" ">
                             <div class="row">
-                                <div class="col-12 col-md-4">
-                                    <div class="card m-2">
-                                        <img src="https://prueba.softmor.com/upload/ifixit_cliente/6ed53c635a48fc87236d2aaaa684e4c7/medios/655febd58f452.svg" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">SOFTMOR POS ANUAL</h5>
-                                            <p class="card-text"> <s>$4200.00</s> </p>
+                                <?php
+
+                                $sub_total = 0;
+                                $descuento = 0;
+                                $total_descuento = 0;
+                                $total_pagar = 0;
+
+                                foreach ($array_paquetes as $key => $pcto) :
+
+                                    $no_meses = 1;
+                                    $text_mes = '/MES';
+                                    $descuento = isset($detalle_cupon['data']['cps_descuento_m' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_m' . $tipo_descuento] : 0;
+                                    $descuento_r = isset($detalle_cupon['data']['cps_descuento_mr' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_mr' . $tipo_descuento] : 0;
+                                    if ($pcto['pcto_periodo'] == '1 year') {
+                                        $no_meses = 12;
+                                        $text_mes = '/AÑO';
+                                        $descuento = isset($detalle_cupon['data']['cps_descuento_a' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_a' . $tipo_descuento] : 30;
+                                        $descuento_r = isset($detalle_cupon['data']['cps_descuento_ar' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_ar' . $tipo_descuento] : 30;
+                                    }
+
+
+                                    $sub_total += $pcto['pcto_costo'] * $no_meses;
+                                    $total_descuento += (($pcto['pcto_costo'] * $no_meses) * $descuento / 100);
+                                ?>
+                                    <div class="col-12">
+                                        <div class="card m-2">
+                                            <div class="card-body">
+                                                <h5 class="card-title">SOFTMOR POS <strong><?= $pcto['pqt_nombre'] . '</strong> ' .  $text_mes ?> </h5>
+
+                                                <?php if ($descuento > 0) : ?>
+                                                    <p class="card-text"> $ <s> <?= number_format($pcto['pcto_costo'] * $no_meses, 2)  ?> </s> </p>
+                                                    <p class="card-text"> <strong> $ <?= number_format((($pcto['pcto_costo'] * $no_meses) - ($pcto['pcto_costo'] * $no_meses) * $descuento / 100), 2) ?> </strong> </p>
+                                                    <p class="card-text" style="font-size:12px;"> Renovación $ <?= number_format((($pcto['pcto_costo'] * $no_meses) - ($pcto['pcto_costo'] * $no_meses) * $descuento_r / 100), 2) ?> </p>
+                                                <? else : ?>
+                                                    <p class="card-text"> $ <?= number_format($pcto['pcto_costo'] * $no_meses, 2)  ?> </p>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-8">
-                                    <div class="form-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Código de descuento o tarjeta de regalo">
-                                        <button class="btn btn-outline-secondary" type="button">Aplicar</button>
-                                    </div>
+                                <?php endforeach; ?>
+
+                                <div class="col-12">
+                                    <?php if (!empty($cto['cto_cupon'])) : ?>
+                                        <div class="input-group mb-5">
+                                            <input type="text" style="border: 1px solid #00A67D" class="form-control" value="<?= $cto['cto_cupon'] ?>" aria-label="Discount code" readonly>
+                                            <span class="input-group-text btn-danger" id="basic-addon2">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="form-group mb-5">
+                                            <label for="">¿Tienes un cupón de descuento?</label>
+                                            <input type="text" name="" id="" class="form-control" placeholder="Código de descuento o tarjeta de regalo">
+                                            <a href="" class="float-end">Aplicar cupón</a>
+                                        </div>
+
+                                    <?php endif; ?>
                                     <div class="d-flex justify-content-between">
                                         <span>Subtotal</span>
-                                        <span>$4,200.00</span>
+                                        <span>$<?= number_format($sub_total, 2) ?></span>
                                     </div>
-                                    <div class="d-flex justify-content-between">
-                                        <span>Descuento (50%)</span>
-                                        <span>$2,100.00</span>
-                                    </div>
+                                    <?php if ($descuento > 0) : ?>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Descuento (<?= $descuento ?> %)</span>
+                                            <span> $<?= number_format($total_descuento, 2) ?></span>
+                                        </div>
+                                    <? else : ?>
+
+                                    <?php endif;
+
+                                    $total_pagar = $sub_total - $total_descuento;
+
+                                    ?>
+
+
                                     <div class="d-flex justify-content-between my-3">
                                         <span><strong>Total</strong></span>
-                                        <span><strong>MXN $2,100.00</strong></span>
+                                        <span><strong>MXN $<?= number_format($total_pagar, 2) ?></strong></span>
                                     </div>
+
+                                    <?php
+
+                                    // EJECUTAR API
+                                        
+                                    // $tokey_pay
+                                    // $total_pagar
+
+                                    ?>
                                     <!-- <div class="d-flex justify-content-between my-3 nota d-none">
                                 <p> <strong>Nota:</strong> Este método de pago es manual. Después de realizar tu pago, por favor sube tu comprobante de pago. A continuación, un agente de ventas confirmará la activación de tu cuenta. Una vez activada, podrás hacer clic en <strong>"Continuar"</strong> para proceder. </p>
                             </div>
@@ -720,12 +797,13 @@ $cto = json_decode($respuesta, true);
     </script>
 
     <script>
+        
         // This is your test publishable API key.
-        const stripe = Stripe("pk_test_51Jc9pJJjDdZvQZOABnRMlqkQBBFEh6XZS7dYrnP9FI3IBeXFj12JQZ5ljqpXQknojlpVCAJ11DcmXN6NbgU1asjL00WOGfaglD");
+        const stripe = Stripe("pk_test_PnY5miBnJ7yeI6nMz7wMer2E00m3y2zff9");
 
         // The items the customer wants to buy
         const items = [{
-            token_pay: "35t554gs782kl09s-23"
+            token_pay: "<?= $_GET['tokenpay'] ?>"
         }];
 
         let elements;

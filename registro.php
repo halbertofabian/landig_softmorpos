@@ -605,7 +605,7 @@ include_once 'config.php';
                     contentType: false,
                     success: function(res) {
                         if (res.status) {
-                            toastr.success(res.mensaje, '¡Muy bien!');
+                            // toastr.success(res.mensaje, '¡Muy bien!');
                             $("#ppt_id").val(res.ppt_id);
                             resolve(true);
                         } else {
@@ -636,7 +636,7 @@ include_once 'config.php';
                     contentType: false,
                     success: function(res) {
                         if (res.status) {
-                            toastr.success(res.mensaje, '¡Muy bien!');
+                            // toastr.success(res.mensaje, '¡Muy bien!');
                             resolve(true);
                         } else {
                             toastr.error(res.mensaje, '¡ERROR!');
@@ -666,7 +666,7 @@ include_once 'config.php';
                     contentType: false,
                     success: function(res) {
                         if (res.status) {
-                            toastr.success(res.mensaje, '¡Muy bien!');
+                            // toastr.success(res.mensaje, '¡Muy bien!');
                             resolve(true);
                         } else {
                             toastr.error(res.mensaje, '¡ERROR!');
@@ -704,7 +704,7 @@ include_once 'config.php';
                     success: function(res) {
                         stopLoadButton();
                         if (res.status) {
-                            toastr.success(res.mensaje, '¡Muy bien!');
+                            // toastr.success(res.mensaje, '¡Muy bien!');
                             resolve(res);
                         } else {
                             toastr.error(res.mensaje, '¡ERROR!');

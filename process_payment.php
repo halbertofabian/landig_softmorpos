@@ -1,10 +1,11 @@
 <?php
 
 require_once 'vendor/autoload.php';
+include_once 'config.php';
 // require_once 'secrets.php';
 
 
-$stripe = new \Stripe\StripeClient('sk_test_51Jc9pJJjDdZvQZOAiVmtbiBxHW6FmOLYVoJ9aEf6XythffFDy46zKoWXWbYRKrDH9JSzsHVn0dA8mAss8k6ec4D900OZQr5LbU');
+$stripe = new \Stripe\StripeClient('sk_test_TOhtnAvqZoPHQAJchqbfTjNO00MiSbjGd2');
 
 // function calculateOrderAmount(array $items): int
 // {
@@ -19,21 +20,27 @@ header('Content-Type: application/json');
 try {
   // retrieve JSON from POST body
   $jsonStr = file_get_contents('php://input');
-  $jsonObj = json_decode($jsonStr);
+  $jsonObj = json_decode($jsonStr, true);
 
-  // var_dump($jsonObj->items);
+  $token_pay = $jsonObj['items'][0]['token_pay'];
 
+  $respuesta = file_get_contents(URL_SOFTMOR_POS . 'consultar-carrito/' . $token_pay);
+  $cto = json_decode($respuesta, true);
 
-
+  $cto_total = str_replace('.', '', $cto['cto_total']);
+  // return;
   // Create a PaymentIntent with amount and currency
   $paymentIntent = $stripe->paymentIntents->create([
-    'amount' => 150000,
+    'amount' =>  $cto_total,
     'currency' => 'mxn',
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     'automatic_payment_methods' => [
       'enabled' => true,
     ],
   ]);
+
+  // API PARA AGREGAR EL CLIENT SECRET
+
 
   $output = [
     'clientSecret' => $paymentIntent->client_secret,

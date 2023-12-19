@@ -159,9 +159,6 @@ $tipo_descuento = '';
             <a class="navbar-brand" href="#">
                 <img src="https://prueba.softmor.com/upload/ifixit_cliente/6ed53c635a48fc87236d2aaaa684e4c7/medios/655febd58f452.svg" alt="Logo" style="margin-left: 25%;">
             </a>
-            <!-- <div class="ms-auto">
-                <button class="btn btn-outline-primary" type="button">Iniciar sesión</button>
-            </div> -->
         </div>
     </nav>
 
@@ -317,7 +314,7 @@ $tipo_descuento = '';
                                         </div>
                                         <button id="submit">
                                             <div class="spinner hidden" id="spinner"></div>
-                                            <span id="button-text">Continuar</span>
+                                            <span id="button-text">PAGAR $<?= number_format($total_pagar,2); ?></span>
                                         </button>
                                         <div id="payment-message" class="hidden"></div>
                                     </form>
@@ -351,6 +348,10 @@ $tipo_descuento = '';
                                     <tr>
                                         <th>Referencia de pago</th>
                                         <td><?= $cto['cto_referencia'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total a pagar</th>
+                                        <td>$<?= number_format($total_pagar,2); ?></td>
                                     </tr>
 
                                 </table>
@@ -413,6 +414,10 @@ $tipo_descuento = '';
                                     <tr>
                                         <th>Referencia de pago</th>
                                         <td><?= $cto['cto_referencia'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total a pagar</th>
+                                        <td>$<?= number_format($total_pagar,2); ?></td>
                                     </tr>
 
                                 </table>
@@ -480,10 +485,10 @@ $tipo_descuento = '';
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <p>&copy; 2004-2023 softmor.com</p>
+                    <p>&copy; <?= Date('Y') ?> softmor.com </p>
                     <a href="#" class="text-light mx-2">Términos de servicio</a>
                     <a href="#" class="text-light mx-2">Política de privacidad</a>
-                    <p>Nuestra misión es facilitar la vida de los desarrolladores de sitios web y sus clientes. Lo hacemos ofreciendo servicios de hosting web fáciles de usar, rápidos y confiables.</p>
+                    <p>Nuestro software de punto de venta para talleres de reparación simplifica la gestión y mejora la experiencia del cliente, combinando eficiencia y fiabilidad en una sola herramienta intuitiva.</p>
                 </div>
             </div>
         </div>

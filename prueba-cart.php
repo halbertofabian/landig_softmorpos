@@ -26,7 +26,7 @@ $tipo_descuento = '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Pasarela de pago</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
@@ -174,7 +174,7 @@ $tipo_descuento = '';
                             <span class="float-end">¿Ya tienes cuenta? <a href="https://app.softmor.com">Iniciar sesión</a> </span>
                         </div>
                         <div class="form-group mt-2 mb-1">
-                            <label for="correo_registro"> <strong style="font-size:18px">Registrate</strong> </label>
+                            <label for="correo_registro"> <strong style="font-size:18px">Regístrate</strong> </label>
                             <input type="text" name="correo_registro" id="correo_registro" class="form-control" placeholder="Correo electrónico" value="<?= $cto['cto_correo_suscriptor'] ?>" required>
                             <small id="helpId_correo" class="form-text text-muted text-danger d-none"></small>
                         </div>
@@ -292,7 +292,7 @@ $tipo_descuento = '';
             </div>
             <div class="col-md-6 d-none div-metodos-pago">
                 <!-- <h4 class="">Pago</h4> -->
-                <strong style="font-size:18px">Pago</strong><br>
+                <strong style="font-size:18px">Métodos de pago</strong><br>
                 <span>Todas las transacciones son seguras y están encriptadas.</span>
                 <div class="accordion" id="paymentMethods">
 

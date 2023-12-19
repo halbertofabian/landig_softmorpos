@@ -9,7 +9,8 @@ $array_paquetes = json_decode($respuesta2, true);
 
 if (!empty($cto['cto_cupon'])) {
     $respuesta3 = file_get_contents(URL_SOFTMOR_POS . 'consultar-cupon/' . $cto['cto_cupon']);
-    $detalle_cupon = json_decode($respuesta3, true);
+    $cupon_res = json_decode($respuesta3, true);
+    $detalle_cupon = $cupon_res['cps'];
 }
 
 
@@ -193,13 +194,13 @@ $tipo_descuento = '';
 
                                     $no_meses = 1;
                                     $text_mes = '/MES';
-                                    $descuento = isset($detalle_cupon['data']['cps_descuento_m' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_m' . $tipo_descuento] : 0;
-                                    $descuento_r = isset($detalle_cupon['data']['cps_descuento_mr' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_mr' . $tipo_descuento] : 0;
+                                    $descuento = isset($detalle_cupon['cps_descuento_m' . $tipo_descuento]) ?  $detalle_cupon['cps_descuento_m' . $tipo_descuento] : 0;
+                                    $descuento_r = isset($detalle_cupon['cps_descuento_mr' . $tipo_descuento]) ?  $detalle_cupon['cps_descuento_mr' . $tipo_descuento] : 0;
                                     if ($pcto['pcto_periodo'] == '1 year') {
                                         $no_meses = 12;
                                         $text_mes = '/AÑO';
-                                        $descuento = isset($detalle_cupon['data']['cps_descuento_a' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_a' . $tipo_descuento] : 30;
-                                        $descuento_r = isset($detalle_cupon['data']['cps_descuento_ar' . $tipo_descuento]) ?  $detalle_cupon['data']['cps_descuento_ar' . $tipo_descuento] : 30;
+                                        $descuento = isset($detalle_cupon['cps_descuento_a' . $tipo_descuento]) ?  $detalle_cupon['cps_descuento_a' . $tipo_descuento] : 30;
+                                        $descuento_r = isset($detalle_cupon['cps_descuento_ar' . $tipo_descuento]) ?  $detalle_cupon['cps_descuento_ar' . $tipo_descuento] : 30;
                                     }
 
 
@@ -314,7 +315,7 @@ $tipo_descuento = '';
                                         </div>
                                         <button id="submit">
                                             <div class="spinner hidden" id="spinner"></div>
-                                            <span id="button-text">PAGAR $<?= number_format($total_pagar,2); ?></span>
+                                            <span id="button-text">PAGAR $<?= number_format($total_pagar, 2); ?></span>
                                         </button>
                                         <div id="payment-message" class="hidden"></div>
                                     </form>
@@ -351,7 +352,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>Total a pagar</th>
-                                        <td>$<?= number_format($total_pagar,2); ?></td>
+                                        <td>$<?= number_format($total_pagar, 2); ?></td>
                                     </tr>
 
                                 </table>
@@ -417,7 +418,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>Total a pagar</th>
-                                        <td>$<?= number_format($total_pagar,2); ?></td>
+                                        <td>$<?= number_format($total_pagar, 2); ?></td>
                                     </tr>
 
                                 </table>
@@ -715,6 +716,15 @@ $tipo_descuento = '';
             var panelId = $(event.target).attr('id');
             if (panelId == 'transfer' || panelId == 'deposit') {
                 $(".nota").removeClass('d-none');
+                var client_secret = null;
+                $.ajax({
+                    type: 'GET',
+                    url: '<?= URL_SOFTMOR_POS ?>' + 'carrito/cto_id_pay/' + client_secret + '/tokenpay/' + '<?= $_GET['tokenpay'] ?>',
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function(res) {}
+                });
             } else {
                 $(".nota").addClass('d-none');
             }

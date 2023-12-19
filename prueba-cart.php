@@ -344,7 +344,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>Nombre</th>
-                                        <td>Softmor Tecnología</td>
+                                        <td><span class="text-copy">Softmor Tecnología</span> <span class="float-end copy"><i class="fa fa-copy"></i></span></td>
                                     </tr>
                                     <tr>
                                         <th>Referencia de pago</th>
@@ -410,7 +410,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>Nombre</th>
-                                        <td>Héctor Alberto López Fabián</td>
+                                        <td><span class="text-copy">Héctor Alberto López Fabián</span> <span class="float-end copy"><i class="fa fa-copy"></i></span></td>
                                     </tr>
                                     <tr>
                                         <th>Referencia de pago</th>

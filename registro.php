@@ -214,7 +214,7 @@ include_once 'config.php';
                         </div>
                         <br><span class="mt-5 text-normal" style="font-size: 12px;">Prueba gratis y sin tarjeta de crédito</span>
                         <div class="div-term">
-                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion"><strong class="">Iniciar sesión</strong></a>
+                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion" href="https://app.softmor.com/" target="_blank"><strong class="">Iniciar sesión</strong></a>
                             <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="terminos.php" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
                         </div>
                     </div>
@@ -262,7 +262,7 @@ include_once 'config.php';
                         <div class="col-md-4 col-12">
                             <select id="paises" class="select2">
                                 <option value="">Seleciona tu país</option>
-                                <option value="México+52">🇲🇽 México (+52)</option>
+                                <option value="México+521">🇲🇽 México (+521)</option>
                                 <option value="Argentina+54">🇦🇷 Argentina (+54)</option>
                                 <option value="Bolivia+591">🇧🇴 Bolivia (+591)</option>
                                 <option value="Brasil+55">🇧🇷 Brasil (+55)</option>
@@ -546,7 +546,6 @@ include_once 'config.php';
                     $.ajax({
                         type: 'GET',
                         url: '<?= URL_SOFTMOR_POS ?>' + 'consultar-cupon/' + cps_codigo,
-                        // data: datos,
                         dataType: 'json',
                         processData: false,
                         contentType: false,

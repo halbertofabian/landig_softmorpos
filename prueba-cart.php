@@ -340,7 +340,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>CLABE interbancaria</th>
-                                        <td>646017206890351424</td>
+                                        <td><span class="text-copy">646017206890351424</span> <span class="float-end copy"><i class="fa fa-copy"></i></span></td>
                                     </tr>
                                     <tr>
                                         <th>Nombre</th>
@@ -348,7 +348,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>Referencia de pago</th>
-                                        <td><?= $cto['cto_referencia'] ?></td>
+                                        <td><span class="text-copy"><?= $cto['cto_referencia'] ?></span> <span class="float-end copy"><i class="fa fa-copy"></i></span></td>
                                     </tr>
                                     <tr>
                                         <th>Total a pagar</th>
@@ -406,7 +406,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>Número de cuenta</th>
-                                        <td>4152 3136 7828 3263</td>
+                                        <td><span class="text-copy">4152 3136 7828 3263</span> <span class="float-end copy"><i class="fa fa-copy"></i></span></td>
                                     </tr>
                                     <tr>
                                         <th>Nombre</th>
@@ -414,7 +414,7 @@ $tipo_descuento = '';
                                     </tr>
                                     <tr>
                                         <th>Referencia de pago</th>
-                                        <td><?= $cto['cto_referencia'] ?></td>
+                                        <td><span class="text-copy"><?= $cto['cto_referencia'] ?></span> <span class="float-end copy"><i class="fa fa-copy"></i></span></td>
                                     </tr>
                                     <tr>
                                         <th>Total a pagar</th>
@@ -820,6 +820,19 @@ $tipo_descuento = '';
                 }
             });
         });
+
+        $('.copy').on('click', function() {
+            var textoCopiar = $(this).prev('.text-copy').text();
+            copiarTextoAlPortapapeles(textoCopiar);
+        });
+
+        function copiarTextoAlPortapapeles(texto) {
+            var elementoTemporal = $('<input>').val(texto).appendTo('body').select();
+            document.execCommand('copy');
+            elementoTemporal.remove();
+            alert('Texto copiado: ' + texto);
+            // toastr.success(texto, '¡Texto copiado!');
+        }
         document.addEventListener('DOMContentLoaded', (event) => {
             const targetDate = new Date("2023-12-31T23:59:59").getTime(); // Ajusta esta fecha a tu objetivo
 

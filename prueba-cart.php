@@ -26,7 +26,7 @@ $tipo_descuento = '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Pasarela de pago</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
@@ -159,9 +159,6 @@ $tipo_descuento = '';
             <a class="navbar-brand" href="#">
                 <img src="https://prueba.softmor.com/upload/ifixit_cliente/6ed53c635a48fc87236d2aaaa684e4c7/medios/655febd58f452.svg" alt="Logo" style="margin-left: 25%;">
             </a>
-            <!-- <div class="ms-auto">
-                <button class="btn btn-outline-primary" type="button">Iniciar sesión</button>
-            </div> -->
         </div>
     </nav>
 
@@ -174,7 +171,7 @@ $tipo_descuento = '';
                             <span class="float-end">¿Ya tienes cuenta? <a href="https://app.softmor.com">Iniciar sesión</a> </span>
                         </div>
                         <div class="form-group mt-2 mb-1">
-                            <label for="correo_registro"> <strong style="font-size:18px">Registrate</strong> </label>
+                            <label for="correo_registro"> <strong style="font-size:18px">Regístrate</strong> </label>
                             <input type="text" name="correo_registro" id="correo_registro" class="form-control" placeholder="Correo electrónico" value="<?= $cto['cto_correo_suscriptor'] ?>" required>
                             <small id="helpId_correo" class="form-text text-muted text-danger d-none"></small>
                         </div>
@@ -292,7 +289,7 @@ $tipo_descuento = '';
             </div>
             <div class="col-md-6 d-none div-metodos-pago">
                 <!-- <h4 class="">Pago</h4> -->
-                <strong style="font-size:18px">Pago</strong><br>
+                <strong style="font-size:18px">Métodos de pago</strong><br>
                 <span>Todas las transacciones son seguras y están encriptadas.</span>
                 <div class="accordion" id="paymentMethods">
 
@@ -317,7 +314,7 @@ $tipo_descuento = '';
                                         </div>
                                         <button id="submit">
                                             <div class="spinner hidden" id="spinner"></div>
-                                            <span id="button-text">Continuar</span>
+                                            <span id="button-text">PAGAR $<?= number_format($total_pagar,2); ?></span>
                                         </button>
                                         <div id="payment-message" class="hidden"></div>
                                     </form>
@@ -351,6 +348,10 @@ $tipo_descuento = '';
                                     <tr>
                                         <th>Referencia de pago</th>
                                         <td><?= $cto['cto_referencia'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total a pagar</th>
+                                        <td>$<?= number_format($total_pagar,2); ?></td>
                                     </tr>
 
                                 </table>
@@ -413,6 +414,10 @@ $tipo_descuento = '';
                                     <tr>
                                         <th>Referencia de pago</th>
                                         <td><?= $cto['cto_referencia'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total a pagar</th>
+                                        <td>$<?= number_format($total_pagar,2); ?></td>
                                     </tr>
 
                                 </table>
@@ -480,10 +485,10 @@ $tipo_descuento = '';
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <p>&copy; 2004-2023 softmor.com</p>
+                    <p>&copy; <?= Date('Y') ?> softmor.com </p>
                     <a href="#" class="text-light mx-2">Términos de servicio</a>
                     <a href="#" class="text-light mx-2">Política de privacidad</a>
-                    <p>Nuestra misión es facilitar la vida de los desarrolladores de sitios web y sus clientes. Lo hacemos ofreciendo servicios de hosting web fáciles de usar, rápidos y confiables.</p>
+                    <p>Nuestro software de punto de venta para talleres de reparación simplifica la gestión y mejora la experiencia del cliente, combinando eficiencia y fiabilidad en una sola herramienta intuitiva.</p>
                 </div>
             </div>
         </div>

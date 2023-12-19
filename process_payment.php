@@ -42,6 +42,7 @@ try {
   // API PARA AGREGAR EL CLIENT SECRET
   $cto_id_pay = file_get_contents(URL_SOFTMOR_POS . 'carrito/cto_id_pay/' . $paymentIntent->client_secret . '/tokenpay/' . $token_pay);
 
+  
 
   $output = [
     'clientSecret' => $paymentIntent->client_secret,

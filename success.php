@@ -68,7 +68,7 @@ $ftra = json_decode($respuesta2, true);
 </head>
 
 <body>
-    
+
     <div class="container-fluid p-0 mb-5">
         <div class="notification-panel d-flex justify-content-center ">
             <div class="notification-header text-center">
@@ -308,6 +308,12 @@ $ftra = json_decode($respuesta2, true);
                 }
             });
         });
+        $(".btn-continue").on("click", function() {
+            window.close();
+
+            var otraPestana = window.open('<?= URL_POS ?>');
+            otraPestana.location.reload();
+        })
     </script>
 </body>
 

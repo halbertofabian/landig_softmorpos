@@ -17,16 +17,20 @@ include_once 'config.php';
             <div class="col-md-6 text-pos-c">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="text-pos-3 "> <strong> Solución de Punto de Venta Especializada para Taller de Reparaciones </strong></h3>
+                        <h3 class="text-pos-3 "> <strong> Software de Punto de Venta Especializada para Taller de Reparaciones </strong></h3>
                         <h2 class="text-pos-2 ">
-                            ¿Necesitas vender y generar notas en cuestión de segundos? <br> ¡Con <strong class="text-primary">Softmor POS </strong> , es posible!
+                            ¿Quieres llevar la gestión y organización de tu taller de reparaciones al próximo nivel?
+                            <br> <strong class="text-primary"> ¡Softmor POS es tu solución! </strong> ,
                         </h2>
                         <h6 class="text-pos-3 ">
-                            Optimiza tu proceso de ventas y brinda a tus clientes una experiencia de compra única y rápida. Di adiós a las largas colas en tus momentos más concurridos.
+                            Softmor POS no es solo un sistema de punto de venta, es una herramienta integral que te permite gestionar y organizar eficientemente los equipos de tus clientes. Descubre cómo Softmor POS puede revolucionar tu taller:
                         </h6>
+                        
                     </div>
 
                     <div class="col-12 text-center mt-5">
+                        
+
                         <h5>Software de 5 entrellas</h5>
                         <img src="./icons8-cinco-de-cinco-estrellas-100.png" width="120px" alt="">
                     </div>

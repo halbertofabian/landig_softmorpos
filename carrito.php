@@ -58,9 +58,9 @@ $arra_cupon = array(
     // Cupon
     'cupon' => isset($cps['cps_codigo']) ? $cps['cps_codigo'] : "",
     'd_m' => isset($cps['cps_descuento_m']) ? $cps['cps_descuento_m'] : 0,
-    'd_a' => isset($cps['cps_descuento_a']) ? $cps['cps_descuento_a'] : 0,
+    'd_a' => isset($cps['cps_descuento_a']) ? $cps['cps_descuento_a'] : 40,
     'dr_m' => isset($cps['cps_descuento_mr']) ? $cps['cps_descuento_mr'] : 0,
-    'dr_a' => isset($cps['cps_descuento_ar']) ? $cps['cps_descuento_ar'] : 0
+    'dr_a' => isset($cps['cps_descuento_ar']) ? $cps['cps_descuento_ar'] : 30
 );
 
 

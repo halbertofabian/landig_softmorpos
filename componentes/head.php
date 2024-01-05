@@ -20,15 +20,15 @@ if (isset($_GET['ref'])) {
 }
 
 if (isset($_SESSION['ref'])) {
-    $registro = "registro.php?ref=" . $_SESSION['ref'];
-    $carrito = "carrito.php?ref=" . $_SESSION['ref'];
+    $registro = "registro?ref=" . $_SESSION['ref'];
+    $carrito = "precios?ref=" . $_SESSION['ref'];
     $respuesta = file_get_contents(URL_SOFTMOR_POS . 'consultar-ref/' . $_SESSION['ref']);
     $datos = json_decode($respuesta, true);
 
     $cps = $datos['cps'];
 } else {
-    $registro = "registro.php";
-    $carrito = "carrito.php";
+    $registro = "registro";
+    $carrito = "precios";
 }
 
 ?>

@@ -960,7 +960,7 @@ $tipo_descuento = '';
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "<?= HTTP_HOST ?>success.php",
+                    return_url: "<?= URL ?>success.php",
                     receipt_email: emailAddress,
                 },
             });

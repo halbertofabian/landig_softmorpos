@@ -456,7 +456,7 @@ $tipo_descuento = '';
                         </div>
                     </div>
 
-                    <div class="accordion-item payment-method">
+                    <!-- <div class="accordion-item payment-method">
                         <h2 class="accordion-header payment-method-header" id="headingTree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#paypal" aria-expanded="false" aria-controls="paypal">
                                 PayPal
@@ -464,11 +464,11 @@ $tipo_descuento = '';
                         </h2>
                         <div id="paypal" class="accordion-collapse collapse" aria-labelledby="headingTree" data-bs-parent="#paymentMethods">
                             <div class="accordion-body">
-                                <!-- Contenido del formulario de PayPal aquí -->
+                                 Contenido del formulario de PayPal aquí 
                                 Próximamente ...
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Repite la estructura para los otros métodos de pago -->
                 </div>
@@ -487,9 +487,9 @@ $tipo_descuento = '';
             <div class="row">
                 <div class="col text-center">
                     <p>&copy; <?= Date('Y') ?> softmor.com </p>
-                    <a href="#" class="text-light mx-2">Términos de servicio</a>
-                    <a href="#" class="text-light mx-2">Política de privacidad</a>
-                    <p>Nuestro software de punto de venta para talleres de reparación simplifica la gestión y mejora la experiencia del cliente, combinando eficiencia y fiabilidad en una sola herramienta intuitiva.</p>
+                    <a target="_blank" href="<?= HTTP_HOST . 'terminos' ?>" class="text-light mx-2">Términos de servicio</a>
+                    <!-- <a href="#" class="text-light mx-2">Política de privacidad</a> -->
+                    <!-- <p>Nuestro software de punto de venta para talleres de reparación simplifica la gestión y mejora la experiencia del cliente, combinando eficiencia y fiabilidad en una sola herramienta intuitiva.</p> -->
                 </div>
             </div>
         </div>

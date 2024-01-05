@@ -65,19 +65,19 @@ if (isset($_SESSION['ref'])) {
         }
 
         .text-pos-3 {
-            font-size: 14px;
+            font-size: 12px;
             color: #64748b;
             font-weight: 400;
         }
 
         .text-pos-4 {
-            font-size: 20px;
+            font-size: 18px;
             color: #0F172B;
             font-weight: 400;
         }
 
         .text-pos-2 {
-            font-size: 28px;
+            font-size: 22px;
             color: #0F172B;
             font-weight: 400;
         }

@@ -23,7 +23,7 @@ include_once 'config.php';
                             <br> <strong class="text-primary"> ¡Softmor POS es tu solución! </strong> ,
                         </h2>
                         <h6 class="text-pos-3 ">
-                            Softmor POS no es solo un sistema de punto de venta, es una herramienta integral que te permite gestionar y organizar eficientemente los equipos de tus clientes. Descubre cómo Softmor POS puede revolucionar tu taller:
+                        Transformará tu taller, ofreciendo una gestión y organización eficiente de los equipos de tus clientes.
                         </h6>
                         
                     </div>

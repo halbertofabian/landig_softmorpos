@@ -286,7 +286,7 @@ include_once 'config.php';
                                 <option value="Estados Unidos+1">🇺🇸 Estados Unidos (+1)</option>
                             </select>
                         </div>
-                        <div class="col-8">
+                        <div class="col-md-8 col-12">
                             <input type="text" class="form-control" id="telefono" placeholder="Teléfono" required>
                         </div>
                     </div>

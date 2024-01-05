@@ -7,7 +7,7 @@ include_once 'config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplo Bootstrap 5</title>
+    <title>Registro - Punto de venta #1 en México</title>
 
     <!-- Agrega el enlace al archivo CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -214,8 +214,8 @@ include_once 'config.php';
                         </div>
                         <br><span class="mt-5 text-normal" style="font-size: 12px;">Prueba gratis y sin tarjeta de crédito</span>
                         <div class="div-term">
-                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion" href="https://app.softmor.com/" target="_blank"><strong class="">Iniciar sesión</strong></a>
-                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="terminos.php" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
+                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion" href="<?= URL_POS ?>" target="_blank"><strong class="">Iniciar sesión</strong></a>
+                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="terminos" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
                         </div>
                     </div>
                 </div>

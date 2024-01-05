@@ -17,7 +17,8 @@ $ftra = json_decode($respuesta2, true);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de pago</title>
+    <title>Confirmación de pago - Punto de venta #1 en México</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .notification-panel {
@@ -74,7 +75,8 @@ $ftra = json_decode($respuesta2, true);
             <div class="notification-header text-center">
                 <i class="fas fa-check-circle notification-icon"></i>
                 <h4>¡Tu compra ha sido exitosa!</h4>
-                <p>Te hemos enviado un comprobante de pago a tu correo</p>
+                <!-- <p>Te hemos enviado un comprobante de pago a tu correo</p> -->
+                <!-- <p>Te hemos enviado un comprobante de pago a tu correo</p> -->
             </div>
         </div>
     </div>
@@ -122,7 +124,7 @@ $ftra = json_decode($respuesta2, true);
                     </table>
                 </div>
                 <div class="text-center mt-3 mb-3">
-                    <button class="btn btn-continue">Regresar al sistema</button>
+                    <a class="btn btn-continue" target="_blank" href="<?= URL_POS ?>">Regresar al sistema</a>
                 </div>
 
                 <div class="card mb-5">

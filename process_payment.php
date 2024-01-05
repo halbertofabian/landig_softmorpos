@@ -5,7 +5,7 @@ include_once 'config.php';
 // require_once 'secrets.php';
 
 
-$stripe = new \Stripe\StripeClient('sk_test_TOhtnAvqZoPHQAJchqbfTjNO00MiSbjGd2');
+$stripe = new \Stripe\StripeClient(SECRET_KEY);
 
 // function calculateOrderAmount(array $items): int
 // {

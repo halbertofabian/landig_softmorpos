@@ -47,12 +47,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $carrito ?>">Precios</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Contacto</a>
-                </li>
+                </li> -->
             </ul>
             <form class="d-flex">
-                <button class="btn btn-outline-dark m-1">Ingresa</button>
+                <a class="btn btn-outline-dark btn-lg"  href="<?= URL_POS ?>">Ingresa</a>
                 <a class="btn btn-primary m-1 btn-primary btn-lg animate__animated animate__pulse animate__infinite" type="button" href="<?= $registro ?>">Empieza gratis</a>
             </form>
         </div>

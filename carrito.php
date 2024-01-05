@@ -27,7 +27,7 @@ $tipo_descuento = '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasarela de pago</title>
+    <title>Pago - Punto de venta #1 en México</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
@@ -465,7 +465,7 @@ $tipo_descuento = '';
                         <div id="paypal" class="accordion-collapse collapse" aria-labelledby="headingTree" data-bs-parent="#paymentMethods">
                             <div class="accordion-body">
                                 <!-- Contenido del formulario de PayPal aquí -->
-                                Paypal
+                                Próximamente ...
                             </div>
                         </div>
                     </div>
@@ -905,7 +905,7 @@ $tipo_descuento = '';
 
     <script>
         // This is your test publishable API key.
-        const stripe = Stripe("pk_test_PnY5miBnJ7yeI6nMz7wMer2E00m3y2zff9");
+        const stripe = Stripe("<?= PUBLIC_KEY ?>");
 
         // The items the customer wants to buy
         const items = [{
@@ -960,7 +960,7 @@ $tipo_descuento = '';
                 elements,
                 confirmParams: {
                     // Make sure to change this to your payment completion page
-                    return_url: "http://localhost/landing-page-sp/success.php",
+                    return_url: "<?= HTTP_HOST ?>success.php",
                     receipt_email: emailAddress,
                 },
             });

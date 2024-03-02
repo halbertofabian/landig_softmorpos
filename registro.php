@@ -7,8 +7,8 @@ include_once 'config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Punto de venta #1 en México</title>
-
+    <title>Taller control - Sistema punto de venta y gestión de ordenes de servicio #1 en México</title>
+    <link rel="shortcut icon" href="./taller_control_isotipo.svg" type="image/x-icon">
     <!-- Agrega el enlace al archivo CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -157,6 +157,16 @@ include_once 'config.php';
         .borde-rojo {
             border: 2px solid red;
         }
+
+        .text-primary{
+            color: #5550FF!important;
+        }
+        .btn-primary{
+            background-color: #5550FF!important;
+        }
+        .bg-primary{
+            background-color: #5550FF!important;
+        }
     </style>
 </head>
 
@@ -298,7 +308,7 @@ include_once 'config.php';
             <!-- Sección con 4 columnas y fondo de color -->
             <div class="col-md-5 bg-primary d-flex align-items-center justify-content-center custom-section footer-logo">
                 <!-- Logotipo centrado vertical y horizontalmente -->
-                <img src="logo-light.svg" width="200" alt="Logotipo" style="max-width: 100%; max-height: 100%; margin-right: 3px; padding: 10px;"> <sup class="text-white ml-3" style="font-size: 12px;"> v5.0</sup>
+                <img src="./1.svg" width="500" alt="Logotipo" style="max-width: 100%; max-height: 100%; margin-right: 3px; padding: 10px;"> <sup class="text-white ml-3" style="font-size: 12px;"> v5.0</sup>
             </div>
         </div>
     </div>

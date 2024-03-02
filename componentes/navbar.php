@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= HTTP_HOST ?>">
-            <img src="https://softmorpos.com/img/logo.png" alt="" width="150" class="d-inline-block align-text-top">
+            <img src="./logo_taller_control.svg" alt="" width="300" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

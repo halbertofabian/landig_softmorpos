@@ -20,7 +20,7 @@ include_once 'config.php';
                         <h3 class="text-pos-3 "> <strong> Software de Punto de Venta Especializada para Taller de Reparaciones </strong></h3>
                         <h2 class="text-pos-2 ">
                             ¿Quieres llevar la gestión y organización de tu taller de reparaciones al próximo nivel?
-                            <br> <strong class="text-primary"> ¡Softmor POS es tu solución! </strong> 
+                            <br> <strong class="text-primary"> Taller control es tu solución! </strong> 
                         </h2>
                         <h6 class="text-pos-3 ">
                         Transformará tu taller, ofreciendo una gestión y organización eficiente de los equipos de tus clientes.

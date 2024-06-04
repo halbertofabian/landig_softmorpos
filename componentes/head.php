@@ -20,15 +20,15 @@ if (isset($_GET['ref'])) {
 }
 
 if (isset($_SESSION['ref'])) {
-    $registro = "registro.php?ref=" . $_SESSION['ref'];
-    $carrito = "carrito.php?ref=" . $_SESSION['ref'];
+    $registro = "registro?ref=" . $_SESSION['ref'];
+    $carrito = "precios?ref=" . $_SESSION['ref'];
     $respuesta = file_get_contents(URL_SOFTMOR_POS . 'consultar-ref/' . $_SESSION['ref']);
     $datos = json_decode($respuesta, true);
 
     $cps = $datos['cps'];
 } else {
-    $registro = "registro.php";
-    $carrito = "carrito.php";
+    $registro = "registro";
+    $carrito = "precios";
 }
 
 ?>
@@ -46,7 +46,9 @@ if (isset($_SESSION['ref'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
+    <link rel="shortcut icon" href="./taller_control_isotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
+     
     <!-- <link rel="stylesheet" href="./css/style-sp.css"> -->
 
     <!-- Agrega jQuery para el funcionamiento del wizard -->
@@ -58,26 +60,26 @@ if (isset($_SESSION['ref'])) {
     <link rel="stylesheet" href="./css/style-sp.css">
 
 
-    <title>POS - Punto de venta #1 en México</title>
+    <title>Taller control - Sistema punto de venta y gestión de ordenes de servicio #1 en México</title>
     <style>
         .c-pos {
             margin-top: 170px;
         }
 
         .text-pos-3 {
-            font-size: 14px;
+            font-size: 12px;
             color: #64748b;
             font-weight: 400;
         }
 
         .text-pos-4 {
-            font-size: 20px;
+            font-size: 18px;
             color: #0F172B;
             font-weight: 400;
         }
 
         .text-pos-2 {
-            font-size: 28px;
+            font-size: 22px;
             color: #0F172B;
             font-weight: 400;
         }
@@ -153,8 +155,8 @@ if (isset($_SESSION['ref'])) {
         }
 
         /* Estilos para el fondo oscuro del footer */
-        .dark-bg {
-            background-color: #0F172B;
+        .white-bg {
+            background-color: #fff;
         }
 
         /* Estilos para el texto del footer */
@@ -177,6 +179,13 @@ if (isset($_SESSION['ref'])) {
 
         .whatsapp-btn:hover {
             background-color: #128c7e;
+        }
+       
+        .text-primary{
+            color: #5550FF!important;
+        }
+        .btn-primary{
+            background-color: #5550FF!important;
         }
     </style>
 </head>

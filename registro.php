@@ -8,8 +8,8 @@ header('Location:' . HTTP_HOST);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplo Bootstrap 5</title>
-
+    <title>Taller control - Sistema punto de venta y gestión de ordenes de servicio #1 en México</title>
+    <link rel="shortcut icon" href="./taller_control_isotipo.svg" type="image/x-icon">
     <!-- Agrega el enlace al archivo CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -158,6 +158,16 @@ header('Location:' . HTTP_HOST);
         .borde-rojo {
             border: 2px solid red;
         }
+
+        .text-primary{
+            color: #5550FF!important;
+        }
+        .btn-primary{
+            background-color: #5550FF!important;
+        }
+        .bg-primary{
+            background-color: #5550FF!important;
+        }
     </style>
 </head>
 
@@ -215,8 +225,8 @@ header('Location:' . HTTP_HOST);
                         </div>
                         <br><span class="mt-5 text-normal" style="font-size: 12px;">Prueba gratis y sin tarjeta de crédito</span>
                         <div class="div-term">
-                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion" href="https://app.softmor.com/" target="_blank"><strong class="">Iniciar sesión</strong></a>
-                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="terminos.php" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
+                            <br><br><span class="text-normal">¿Ya tienes una cuenta?</span><a class="btn btn-link btnIniciarSesion" href="<?= URL_POS ?>" target="_blank"><strong class="">Iniciar sesión</strong></a>
+                            <br><span class="text-normal">Al registrarme, acepto la</span><a class="btn btn-link btnpoliticas" href="terminos" target="_blank"><strong class="">Política de privacidad y terminos de servicio de Softmor POS.</strong></a>
                         </div>
                     </div>
                 </div>
@@ -260,7 +270,7 @@ header('Location:' . HTTP_HOST);
                                 <input type="text" name="" id="ppt_nombre" class="form-control" placeholder="Nombre">
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12 mb-2">
                             <select id="paises" class="select2">
                                 <option value="">Seleciona tu país</option>
                                 <option value="México+521">🇲🇽 México (+521)</option>
@@ -287,7 +297,7 @@ header('Location:' . HTTP_HOST);
                                 <option value="Estados Unidos+1">🇺🇸 Estados Unidos (+1)</option>
                             </select>
                         </div>
-                        <div class="col-8">
+                        <div class="col-md-8 col-12 mb-2">
                             <input type="text" class="form-control" id="telefono" placeholder="Teléfono" required>
                         </div>
                     </div>
@@ -299,7 +309,7 @@ header('Location:' . HTTP_HOST);
             <!-- Sección con 4 columnas y fondo de color -->
             <div class="col-md-5 bg-primary d-flex align-items-center justify-content-center custom-section footer-logo">
                 <!-- Logotipo centrado vertical y horizontalmente -->
-                <img src="logo-light.svg" width="200" alt="Logotipo" style="max-width: 100%; max-height: 100%; margin-right: 3px; padding: 10px;"> <sup class="text-white ml-3" style="font-size: 12px;"> v5.0</sup>
+                <img src="./1.svg" width="500" alt="Logotipo" style="max-width: 100%; max-height: 100%; margin-right: 3px; padding: 10px;"> <sup class="text-white ml-3" style="font-size: 12px;"> v5.0</sup>
             </div>
         </div>
     </div>

@@ -17,16 +17,20 @@ include_once 'config.php';
             <div class="col-md-6 text-pos-c">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="text-pos-3 "> <strong> Solución de Punto de Venta Especializada para Taller de Reparaciones </strong></h3>
+                        <h3 class="text-pos-3 "> <strong> Software de Punto de Venta Especializada para Taller de Reparaciones </strong></h3>
                         <h2 class="text-pos-2 ">
-                            ¿Necesitas vender y generar notas en cuestión de segundos? <br> ¡Con <strong class="text-primary">Softmor POS </strong> , es posible!
+                            ¿Quieres llevar la gestión y organización de tu taller de reparaciones al próximo nivel?
+                            <br> <strong class="text-primary"> ¡Taller control es tu solución! </strong> 
                         </h2>
                         <h6 class="text-pos-3 ">
-                            Optimiza tu proceso de ventas y brinda a tus clientes una experiencia de compra única y rápida. Di adiós a las largas colas en tus momentos más concurridos.
+                        Transformará tu taller, ofreciendo una gestión y organización eficiente de los equipos de tus clientes.
                         </h6>
+                        
                     </div>
 
                     <div class="col-12 text-center mt-5">
+                        
+
                         <h5>Software de 5 entrellas</h5>
                         <img src="./icons8-cinco-de-cinco-estrellas-100.png" width="120px" alt="">
                     </div>
@@ -37,7 +41,7 @@ include_once 'config.php';
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="./img_portada_sp_4.png" alt="" class="img-fluid w-100">
+                <img src="./img_portada_2.svg" alt="" class="img-fluid w-100">
             </div>
         </div>
         <?php include_once 'componentes/section-pos1.php'; ?>

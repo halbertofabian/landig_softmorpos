@@ -6,13 +6,25 @@ define('HTTP_HOST', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] .
 
 // LOCAL 
 define('URL_SOFTMOR_POS', 'http://localhost/ifixitv2.com/api/public/');
+define('URL', 'http://localhost/landing-page-sp/');
+// define('URL_SOFTMOR_POS', 'http://192.168.1.12/ifixitv2.com/api/public/');
+define('URL_POS', 'http://localhost/ifixitv2.com/');
 // define('URL_SOFTMOR_POS', 'http://localhost/softmor-pos/api/public/');
+
 
 // PRODUCCION 
 // define('URL_SOFTMOR_POS', 'https://prueba.softmor.com/api/public/');
 // define('URL_SOFTMOR_POS', 'https://app.softmor.com//api/public/');
 
-function cargarComponente($ruta, $title="")
+
+// API STRIPE
+define('SECRET_KEY', 'sk_test_TOhtnAvqZoPHQAJchqbfTjNO00MiSbjGd2');
+define('PUBLIC_KEY', 'pk_test_PnY5miBnJ7yeI6nMz7wMer2E00m3y2zff9');
+
+
+
+
+function cargarComponente($ruta, $title = "")
 {
     include_once $ruta . '.php';
 }

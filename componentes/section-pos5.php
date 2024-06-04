@@ -10,7 +10,7 @@
         <div>
             <h3 class="text-pos-3">¿Tienes dudas sobre cómo esta plataforma puede beneficiarte?</h3>
             <p>¡Descubre por qué necesitas adquirir nuestro software!</p>
-            <a href="https://wa.me/527341006945?text=Hola,%20me%20interesa%20en%20Softmor%20POS.%20¿Puedes%20proporcionarme%20más%20información?" target="_blank" class="btn btn-outline-primary mb-3">Recibir más información</a>
+            <a href="https://wa.me/527341006945?text=Hola,%20me%20interesa%20en%20Taller%20Control.%20¿Puedes%20proporcionarme%20más%20información?" target="_blank" class="btn btn-outline-primary mb-3">Recibir más información</a>
         </div>
     </div>
     <div class="col-md-6">

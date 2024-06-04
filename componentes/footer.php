@@ -27,3 +27,12 @@
 
 <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script>
+    $(document).on('click', '.btnEmpezarGratis', function() {
+        var mensaje = "Hola, ¿podría obtener una cuenta demo de Taller Control, por favor?";
+        var textoFormateado = encodeURIComponent(mensaje);
+        var url = 'https://wa.me/5213334814671?text=' + textoFormateado;
+        window.open(url, 'blank');
+    });
+</script>

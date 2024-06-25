@@ -53,7 +53,7 @@
             </ul>
             <form class="d-flex">
                 <a class="btn btn-outline-dark m-1" href="https://app.tallercontrol.com/">Ingresa</a>
-                <a class="btn btn-primary m-1 btn-primary btn-lg animate__animated animate__pulse animate__infinite btnEmpezarGratis" type="button" href="javascript:void(0)">Empieza gratis</a>
+                <a class="btn btn-primary m-1 btn-primary btn-lg animate__animated animate__pulse animate__infinite btnEmpezarGratis" type="button" href="javascript:void(0)">Prueba gratis</a>
             </form>
         </div>
     </div>

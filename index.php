@@ -35,7 +35,7 @@ include_once 'config.php';
                         <img src="./icons8-cinco-de-cinco-estrellas-100.png" width="120px" alt="">
                     </div>
                     <div class="col-12 ">
-                        <a class="btn btn-lg btn-primary mt-4 btnEmpezarGratis" type="button" href="javascript:void(0)">Prueba gratis</a>
+                        <a class="btn btn-lg btn-primary mt-4 btnEmpezarGratis" type="button" href="javascript:void(0)">Demo gratis</a>
 
                     </div>
                 </div>
@@ -61,7 +61,7 @@ include_once 'config.php';
                     <li><i class="fas fa-check"></i> Gestión eficiente desde cualquier lugar.</li>
                     <li><i class="fas fa-check"></i> Simplifica la administración de talleres.</li>
                 </ul>
-                <a class="btn btn-lg btn-primary btnEmpezarGratis" type="button" href="javascript:void(0)">Prueba gratis</a>
+                <a class="btn btn-lg btn-primary btnEmpezarGratis" type="button" href="javascript:void(0)">Demo gratis</a>
             </div>
         </div>
         <div class="row section-pos3">
@@ -74,7 +74,7 @@ include_once 'config.php';
                     <li><i class="fas fa-check"></i> Controla tu inventario de forma eficiente y precisa..</li>
                     <li><i class="fas fa-check"></i> Potencia tus ventas con un sistema de punto de venta confiable.</li>
                 </ul>
-                <a class="btn btn-lg btn-primary mt-4 btnEmpezarGratis" type="button" href="javascript:void(0)">Prueba gratis</a>
+                <a class="btn btn-lg btn-primary mt-4 btnEmpezarGratis" type="button" href="javascript:void(0)">Demo gratis</a>
             </div>
 
             <div class="col-md-6">

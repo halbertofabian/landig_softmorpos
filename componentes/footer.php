@@ -60,7 +60,7 @@
                                 <option value="El Salvador+503">🇸🇻 El Salvador (+503)</option>
                                 <option value="Guatemala+502">🇬🇹 Guatemala (+502)</option>
                                 <option value="Honduras+504">🇭🇳 Honduras (+504)</option>
-                                <option value="México+52">🇲🇽 México (+52)</option>
+                                <option value="México+521">🇲🇽 México (+521)</option>
                                 <option value="Nicaragua+505">🇳🇮 Nicaragua (+505)</option>
                                 <option value="Panamá+507">🇵🇦 Panamá (+507)</option>
                                 <option value="Paraguay+595">🇵🇾 Paraguay (+595)</option>

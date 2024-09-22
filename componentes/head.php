@@ -48,7 +48,7 @@ if (isset($_SESSION['ref'])) {
 
     <link rel="shortcut icon" href="./taller_control_isotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
-     
+
     <!-- <link rel="stylesheet" href="./css/style-sp.css"> -->
 
     <!-- Agrega jQuery para el funcionamiento del wizard -->
@@ -180,12 +180,13 @@ if (isset($_SESSION['ref'])) {
         .whatsapp-btn:hover {
             background-color: #128c7e;
         }
-       
-        .text-primary{
-            color: #5550FF!important;
+
+        .text-primary {
+            color: #5550FF !important;
         }
-        .btn-primary{
-            background-color: #5550FF!important;
+
+        .btn-primary {
+            background-color: #5550FF !important;
         }
     </style>
 </head>

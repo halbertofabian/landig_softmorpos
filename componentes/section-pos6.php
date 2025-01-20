@@ -44,6 +44,7 @@
         border-radius: 5px;
         margin-top: 20px;
         width: 100%;
+        text-decoration: none;
     }
 
     .renovacion {
@@ -72,14 +73,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card mb-4">
+            <div class="card mb-4  ">
                 <div class="card-body text-center">
                     <h5 class="card-title">Mensual</h5>
-                    <p class="precio-anterior">$350.00 MXN/mes</p>
-                    <p class="precio">$150.00 MXN/mes</p>
-                    <p>+ 2 meses GRATIS</p>
-                    <button class="btn-plan">Elegir plan</button>
-                    <p class="renovacion">MX$ 159.99/mes al renovar</p>
+                    <p class="precio-anterior">$500.00 MXN/mes</p>
+                    <p class="precio">$350.00 MXN/mes</p>
+                   
+                    <a target="_blank" href="https://wa.me/5213334814671?text=Hola,%20me%20interesa%20adquirir%20el%20plan%20mensual%20de%20taller%20control" class="btn-plan btn-primary">Elegir plan</a>
+                    <p class="renovacion ">Facturación mensual $350 MXN</p>
                     <ul>
                         <li class="li-price">Licencia para 1 sucursal</li>
                         <li class="li-price">10 usuarios</li>
@@ -92,15 +93,17 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card mb-4">
+        
+            <div class="card mb-4 ">
+
                 <div class="card-body text-center">
-                    <span class="mas-vendido">MÁS VENDIDO</span>
+                   
                     <h5 class="card-title">Anual</h5>
-                    <p class="precio-anterior">$460.00 MXN/mes</p>
-                    <p class="precio">$133.00 MXN/mes</p>
-                    <p>+ 2 meses GRATIS</p>
-                    <button class="btn-plan">Elegir plan</button>
-                    <p class="renovacion">MX$ 333.99/mes al renovar</p>
+                    <p class="precio-anterior">$350.00 MXN/mes</p>
+                    <p class="precio">$140.00 MXN/mes</p>
+                   
+                    <a target="_blank" href="https://wa.me/5213334814671?text=Hola,%20me%20interesa%20adquirir%20el%20plan%20anual%20de%20taller%20control" class="btn-plan btn-primary">Elegir plan</a>
+                    <p class="renovacion ">Facturación anual $1,680 MXN</p>
                     <ul>
                         <li class="li-price">Licencia para 1 sucursal</li>
                         <li class="li-price">Usuarios ilimitados</li>

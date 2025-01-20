@@ -46,7 +46,7 @@ if (isset($_SESSION['ref'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-    <link rel="shortcut icon" href="./taller_control_isotipo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/taller_control_isotipo.svg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f24eb69f99.js" crossorigin="anonymous"></script>
 
     <!-- <link rel="stylesheet" href="./css/style-sp.css"> -->

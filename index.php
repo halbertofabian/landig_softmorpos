@@ -32,7 +32,7 @@ include_once 'config.php';
                     </div>
 
 
-                    <div class="col-lg-10 col-xs-12 ">
+                    <div class="col-lg-10 col-xs-12 d-none">
                         <div class="input-group ">
                             <input type="text" class="form-control" placeholder="Ingresa tu correo" aria-label="Ingresa tu correo" aria-describedby="button-addon2">
 
@@ -72,7 +72,7 @@ include_once 'config.php';
                     <li><i class="li-price"></i> Accede desde cualquier lugar.</li>
                     <li><i class="li-price"></i> Incrementa tus ventas.</li>
                 </ul>
-                <div class="row text-center">
+                <div class="row text-center d-none">
                     <div class="col-lg-12 col-xs-12 ">
                         <span class="badge rounded-pill" style="background-color: #5550FF;">Prueba gratis por 14 días</span>
                     </div>
@@ -92,7 +92,7 @@ include_once 'config.php';
                     <li><i class="li-price"></i> Control de usuarios y accesos.</li>
                     <li><i class="li-price"></i> Y otras características relevantes que consideres importantes.</li>
                 </ul>
-                <div class="row">
+                <div class="row d-none">
                     <div class="col-lg-12 col-xs-12 ">
 
                         <span class="badge rounded-pill" style="background-color: #5550FF;">Prueba gratis por 14 días</span>

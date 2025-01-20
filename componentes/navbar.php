@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= HTTP_HOST ?>">
-            <img src="./logo_taller_control.svg" alt="" width="200" class="d-inline-block align-text-top">
+            <img src="./img/logo_taller_control.svg" alt="" width="200" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -44,16 +44,14 @@
                         <li><a class="dropdown-item" href="https://softmor.com/mobile-development/" target="_blank" >Desarrollo Mobile</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= $carrito ?>">Precios</a>
-                </li>
+              
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Contacto</a>
                 </li> -->
             </ul>
             <form class="d-flex">
-                <a class="btn btn-outline-dark m-1" href="https://app.tallercontrol.com/">Ingresa</a>
-                <a class="btn btn-primary m-1 btn-primary btn-lg animate__animated animate__pulse animate__infinite btnEmpezarGratis" type="button" href="javascript:void(0)">Demo gratis</a>
+                <a class="btn btn-primary m-1" href="https://app.tallercontrol.com/">Iniciar sesión</a>
+                <!--<a class="btn btn-primary m-1 btn-primary btn-lg    btnEmpezarGratis" type="button" href="javascript:void(0)">Demo gratis</a>-->
             </form>
         </div>
     </div>

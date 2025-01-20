@@ -109,7 +109,7 @@ if (isset($_SESSION['ref'])) {
         .list-register li {
             gap: 5px;
             font-size: 16px;
-            color: #fff;
+            color: #000;
             margin-right: 6px;
             display: flex;
             /* Para que los elementos estén en una fila */
@@ -136,9 +136,7 @@ if (isset($_SESSION['ref'])) {
 
 
         /* Estilos para la animación del botón */
-        .btn-primary {
-            animation: pulse 2s infinite;
-        }
+
 
         @keyframes pulse {
             0% {
@@ -187,6 +185,24 @@ if (isset($_SESSION['ref'])) {
 
         .btn-primary {
             background-color: #5550FF !important;
+        }
+
+        .bg-primary {
+            background-color: #5550FF !important;
+        }
+
+        .btn-outline-primary {
+            color: #5550FF !important;
+            /* Color del texto y del borde */
+            border-color: #5550FF !important;
+            /* Color del borde */
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #5550FF !important;
+            /* Color de fondo al pasar el ratón */
+            color: white !important;
+            /* Color del texto al pasar el ratón */
         }
     </style>
 </head>

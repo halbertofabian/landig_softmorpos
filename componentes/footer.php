@@ -1,21 +1,38 @@
-<footer class="footer mt-auto py-3 white-bg ">
+<style>
+    .footer-container {
+        background-color: black;
+        /* Añadido: color de fondo negro al contenedor */
+        padding: 10px;
+        /* Añadido: espacio interno para que el texto no toque el borde */
+    }
+
+    .text-primary-2 {
+        color: white !important;
+        /* Añadido: forzar color blanco al texto */
+    }
+</style>
+<footer class="footer-container mt-auto py-3 white-bg ">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="d-flex align-items-center justify-content-center text-center">
                     <div>
-                        <img src="./logo_taller_control.svg" width="100" alt="Logo de Softmor POS">
-                        <p class="footer-text">Somos una startup SaaS que ofrece soluciones de punto de venta y administración para negocios de reparación y servicio técnico.</p>
+                        <img src="./img/logo_oficial_softmor.png" width="150" alt="Logo de Softmor POS">
+                        <p class="footer-text text-primary-2"> <b>Taller control:</b> Soluciones de punto de venta y administración para negocios de reparación y servicio técnico.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-center">
-                <span class="footer-text text-primary ">&copy; <?= date('Y') ?> <a target="_blank" href="https://softmor.com/">Softmor Studios.</a> Todos los derechos reservados.</span>
-            </div>
-            <div class="col-md-6 text-end">
-                <a href="https://facebook.com/softmor" target="_blank" class="me-3 text-primary"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/softmormx/" target="_blank" class="me-3 text-primary"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/softmormx" target="_blank" class="text-primary"><i class="fab fa-twitter"></i></a>
+            <div class="footer-container">
+                <div class="col-md-12 text-center">
+                    <span class="footer-text text-primary-2 text-center">&copy; <?= date('Y') ?> <a target="_blank" href="https://softmor.com/">Softmor Studios.</a> Todos los derechos reservados.
+                        Dirección: B. Juárez 4B, Reforma, 62900 Jojutla, Mor, México. Tels: 734 100 69 45, 333 48 14 671
+                    </span>
+                </div>
+                <div class="col-md-12 text-center">
+                    <a href="https://facebook.com/softmor" target="_blank" class="me-3 text-primary-2"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/softmormx/" target="_blank" class="me-3 text-primary-2"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/softmormx" target="_blank" class="text-primary-2"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
     </div>

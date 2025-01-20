@@ -51,7 +51,7 @@
 .list-register li {
     gap: 5px;
     font-size: 16px;
-    color: #fff;
+    color: #000;
     margin-right: 6px;
     display: flex;
     /* Para que los elementos estén en una fila */
@@ -77,10 +77,7 @@
 
 
 
-/* Estilos para la animación del botón */
-.btn-primary {
-    animation: pulse 2s infinite;
-}
+
 
 @keyframes pulse {
     0% {
@@ -193,3 +190,4 @@ li {
     color: white;
     /* Texto blanco */
 }
+

@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-4">
         <div class="card">
-            <center> <img class="m-2" src="./img/icons8-soporte-en-línea-80.png" width="80" alt=""></center>
+            <center> <img class="m-2" src="./img/icons8-soporte-en-linea-80.png" width="80" alt=""></center>
             <div class="card-body text-center">
                 <h4 class=" mb-4 card-title">Soporte técnico</h4>
                 <p class=" mb-4 card-text">Recibe asesoría gratuita de un equipo especializado a través de teléfono, correo electrónico o chat.</p>

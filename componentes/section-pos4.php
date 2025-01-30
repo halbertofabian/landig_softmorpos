@@ -5,7 +5,7 @@
                 <div class="container py-5 ">
                     <h1 class="display-5 fw-bold  text-pos-2 text-center">Empieza hoy a darle miles de posibilidades a tu negocio con Taller control</h1>
                     <p class="">Prueba todas nuestras funcionalidades de a grapa. Más de 1,500 negocios nos eligen...</p>
-                    <div class="row d-none">
+                    <div class="row">
                         <div class="col-lg-12 col-xs-12 ">
                             <div class="input-group ">
                                 <input type="text" class="form-control" placeholder="Ingresa tu correo" aria-label="Ingresa tu correo" aria-describedby="button-addon2">

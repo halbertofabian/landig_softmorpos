@@ -1,15 +1,8 @@
 
-# Impedir que se pueda ver el listado de contenido de directorios
-Options All -Indexes
-
-
+# Habilitar el uso de mod_rewrite
 RewriteEngine On
 
-# Para omitir la extensión .php
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [L]
-
-# Para omitir la extensión .html
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [L]
-
+# Reescribir las URLs eliminando la extensión .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]

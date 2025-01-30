@@ -9,12 +9,48 @@ include_once 'config.php';
 
 <body style="background-color:#F1F5F9; position: relative;">
 
-<style>
-    .highlight {
-      color: #5550FF; /* Color primario */
-      font-weight: bold; 
-    }
-  </style>
+    <style>
+        .highlight {
+            color: #5550FF;
+            /* Color primario */
+            font-weight: bold;
+        }
+
+        .msjerror {
+            font-size: 12px;
+            color: red;
+        }
+
+        .modal-content {
+            text-align: center;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .modal-header {
+            border-bottom: none;
+        }
+
+        .modal-body img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            color: #5550FF;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #5550FF;
+            border-color: #5550FF;
+        }
+
+        .btn-primary:hover {
+            background-color: #4440DD;
+            border-color: #4440DD;
+        }
+    </style>
 
     <?php include_once 'componentes/navbar.php'; ?>
     <div class="container c-pos">
@@ -32,13 +68,19 @@ include_once 'config.php';
                     </div>
 
 
-                    <div class="col-lg-10 col-xs-12 d-none">
+                    <div class="col-lg-10 col-xs-12">
                         <div class="input-group ">
-                            <input type="text" class="form-control" placeholder="Ingresa tu correo" aria-label="Ingresa tu correo" aria-describedby="button-addon2">
+                            <input type="email" class="form-control" id="inputPrueba1" placeholder="Ingresa tu correo" aria-label="Ingresa tu correo" aria-describedby="button-addon2">
 
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2" >Comenzar la prueba</button>
+                            <button class="btn btn-outline-primary" type="button" id="button-addon2">Comenzar la prueba</button>
+
+
 
                         </div>
+                        <div>
+                            <span class="msjerror d-none"></span>
+                        </div>
+
                         <span class="badge rounded-pill" style="background-color: #5550FF;">Prueba gratis por 14 días</span>
                     </div>
 
@@ -72,7 +114,7 @@ include_once 'config.php';
                     <li><i class="li-price"></i> Accede desde cualquier lugar.</li>
                     <li><i class="li-price"></i> Incrementa tus ventas.</li>
                 </ul>
-                <div class="row text-center d-none">
+                <div class="row text-center ">
                     <div class="col-lg-12 col-xs-12 ">
                         <span class="badge rounded-pill" style="background-color: #5550FF;">Prueba gratis por 14 días</span>
                     </div>
@@ -92,7 +134,7 @@ include_once 'config.php';
                     <li><i class="li-price"></i> Control de usuarios y accesos.</li>
                     <li><i class="li-price"></i> Y otras características relevantes que consideres importantes.</li>
                 </ul>
-                <div class="row d-none">
+                <div class="row ">
                     <div class="col-lg-12 col-xs-12 ">
 
                         <span class="badge rounded-pill" style="background-color: #5550FF;">Prueba gratis por 14 días</span>
@@ -110,6 +152,76 @@ include_once 'config.php';
 
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787_1280.png" alt="Éxito">
+                    <h5 class="modal-title">¡Ya puedes probar nuestra demo! 🎉</h5>
+                    <p>Busca el <strong>enlace</strong> en tu <strong>correo electrónico</strong> 📩 y comienza a explorar. ¡Que la disfrutes! 😄</p>
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+
+
+            $("#button-addon2").on("click", function() {
+                var user_email = $("#inputPrueba1").val();
+                //alert(user_email);
+                // e.preventDefault(); // Evita que se recargue la página
+
+                // Datos a enviar
+                const formData = {
+                    user_email: user_email,
+                };
+
+                // Llamada AJAX
+                $.ajax({
+                    url: '<?= URL_SOFTMOR_POS . 'servidores/verificacioncorreo' ?>', // Cambia esta URL por la de tu API
+                    type: 'POST',
+                    data: JSON.stringify(formData), // Convierte los datos a JSON
+                    contentType: 'application/json', // Especifica el tipo de contenido
+                    beforeSend: function() {
+                        $("#button-addon2").attr('disabled', true);
+                        $("#button-addon2").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...');
+                    },
+                    success: function(response) {
+                        var res = JSON.parse(response);
+
+                        if (res.status) {
+
+                            $("#demoModal").modal("show");
+
+                        } else {
+                            console.log(res.mensaje);
+                            $(".msjerror").html(res.mensaje)
+                            $(".msjerror").removeClass("d-none");
+                            $('#inputPrueba1').css('border', '1px solid red');
+
+                        }
+                        $("#button-addon2").attr('disabled', false);
+                        $("#button-addon2").html('Comenzar la prueba');
+
+                    },
+                    error: function(xhr, status, error) {
+                        $('#response').html('<p style="color: red;">Error: ' + xhr.responseText + '</p>');
+                    }
+                });
+            })
+
+        })
+    </script>
     <!-- Footer -->
     <?php include_once 'componentes/footer.php'; ?>
 
